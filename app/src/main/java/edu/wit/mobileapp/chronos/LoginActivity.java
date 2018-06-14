@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     private static final String[] DUMMY_CREDENTIALS = new String[]{
             //Test Comment
-            "foo@example.com:hello", "bar@example.com:world"
+            "foo@wit.edu:hello", "bar@wit.edu:world"
     };
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
@@ -193,7 +193,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
-        return email.contains("@");
+        return email.contains("@wit.edu");
     }
 
     private boolean isPasswordValid(String password) {
