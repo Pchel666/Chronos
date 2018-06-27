@@ -54,7 +54,7 @@ public class WebDummy extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Uses JavaScript to get html data from the current page
-                webview.loadUrl("javascript:window.INTERFACE.processContent(document.getElementsByTagName('body')[0].innerText);");
+                webview.loadUrl("javascript:window.INTERFACE.processContent(document.getElementsByTagName('body')[0].getElementsByTagName('table')[7].innerText);");
             }
         });
     }
@@ -62,7 +62,7 @@ public class WebDummy extends AppCompatActivity {
     // An instance of this class will be registered as a JavaScript interface
     class MyJavaScriptInterface
     {
-        private MyJavaScriptInterface()
+        public MyJavaScriptInterface()
         {
         }
         @SuppressWarnings("unused")

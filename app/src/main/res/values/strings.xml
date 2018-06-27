@@ -2,7 +2,7 @@
     <string name="app_name">Chronos</string>
 
     <!-- Strings related to login -->
-    <string name="scrape">Scrape</string>
+    <string name="scrape">Scrape (only on correct page)</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
     <string name="action_sign_in">Sign in or register</string>
