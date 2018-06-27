@@ -27,7 +27,7 @@ public class WebDummy extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_dummy);
-        final WebView webview = (WebView) findViewById(R.id.webView1);
+        final WebView webview = findViewById(R.id.webView1);
         webview.setWebViewClient(new WebViewClient());
         final Context contextToPass = this;
 
@@ -42,99 +42,36 @@ public class WebDummy extends AppCompatActivity {
         // Provide pinch zoom operation
         webview.getSettings().setBuiltInZoomControls(true);
 
+        // JavaScript for html scraping
         webview.addJavascriptInterface(new MyJavaScriptInterface(),"INTERFACE");
-        webview.setWebViewClient(new WebViewClient() {
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                view.loadUrl("javascript:window.INTERFACE.processContent(document.getElementsByTagName('body')[0].innerText);");
-            }
-        });
 
         webview.loadUrl("https://cas.wit.edu");
 
-
+        // Scrape button stuff
         Button myButton = findViewById(R.id.button);
 
         myButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String urlOfWebView = webview.getUrl();
-                webview.getContentDescription();
-                GetData getData = new GetData(contextToPass, urlOfWebView);
-                getData.execute();
+                //Uses JavaScript to get html data from the current page
+                webview.loadUrl("javascript:window.INTERFACE.processContent(document.getElementsByTagName('body')[0].innerText);");
             }
         });
-
-
     }
 
-    /* An instance of this class will be registered as a JavaScript interface */
+    // An instance of this class will be registered as a JavaScript interface
     class MyJavaScriptInterface
     {
-        public MyJavaScriptInterface()
+        private MyJavaScriptInterface()
         {
-
         }
-
         @SuppressWarnings("unused")
         @JavascriptInterface
         public void processContent(String aContent)
         {
-            final String content = aContent;
             Log.v(TAG, aContent);
         }
     }
-
-
-    class GetData extends AsyncTask<String, Void, String> {
-        private Context mContext;
-        private String currentUrl;
-
-        GetData(Context context, String curUrl){
-            this.mContext=context;
-            this.currentUrl = curUrl;
-        }
-
-
-        @Override
-        protected String doInBackground(String... strings) {
-            String result = "";
-            try {
-                URL url = new URL(currentUrl);
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-
-                InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-                StringBuffer sb = new StringBuffer();
-                BufferedReader br = new BufferedReader(new InputStreamReader(in));
-                String read;
-                while ((read = br.readLine())!=null){
-                    sb.append(read);
-                }
-                br.close();
-                result = sb.toString();
-
-            } catch (IOException e){
-                Log.d(TAG, "Error: " + e.toString());
-
-            }
-            return result;
-        }
-
-        @Override
-        protected void onPostExecute(String data) {
-            Log.v(TAG, "data = "+ data);
-        }
-    }
-
-    class JIFace {
-        public void print(String data) {
-            data =""+data+"";
-            System.out.println(data);
-            //DO the stuff
-        }
-    }
-
-
 }
 
 
