@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
@@ -26,9 +27,10 @@ public class WebDummy extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_dummy);
-        final WebView webview = (WebView)findViewById(R.id.webView1);
+        final WebView webview = (WebView) findViewById(R.id.webView1);
         webview.setWebViewClient(new WebViewClient());
         final Context contextToPass = this;
+
 
         // Enable JavaScript
         webview.getSettings().setJavaScriptEnabled(true);
@@ -40,6 +42,14 @@ public class WebDummy extends AppCompatActivity {
         // Provide pinch zoom operation
         webview.getSettings().setBuiltInZoomControls(true);
 
+        webview.addJavascriptInterface(new MyJavaScriptInterface(),"INTERFACE");
+        webview.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                view.loadUrl("javascript:window.INTERFACE.processContent(document.getElementsByTagName('body')[0].innerText);");
+            }
+        });
+
         webview.loadUrl("https://cas.wit.edu");
 
 
@@ -49,13 +59,30 @@ public class WebDummy extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String urlOfWebView = webview.getUrl();
-                GetData getData = new GetData(contextToPass, "https://cas.wit.edu");
+                webview.getContentDescription();
+                GetData getData = new GetData(contextToPass, urlOfWebView);
                 getData.execute();
             }
         });
 
 
+    }
 
+    /* An instance of this class will be registered as a JavaScript interface */
+    class MyJavaScriptInterface
+    {
+        public MyJavaScriptInterface()
+        {
+
+        }
+
+        @SuppressWarnings("unused")
+        @JavascriptInterface
+        public void processContent(String aContent)
+        {
+            final String content = aContent;
+            Log.v(TAG, aContent);
+        }
     }
 
 
@@ -99,5 +126,15 @@ public class WebDummy extends AppCompatActivity {
         }
     }
 
+    class JIFace {
+        public void print(String data) {
+            data =""+data+"";
+            System.out.println(data);
+            //DO the stuff
+        }
+    }
+
 
 }
+
+
