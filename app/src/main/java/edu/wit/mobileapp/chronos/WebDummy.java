@@ -27,7 +27,7 @@ public class WebDummy extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_dummy);
-        final WebView webview = findViewById(R.id.webView1);
+        final WebView webview = (WebView)findViewById(R.id.webView1);
         webview.setWebViewClient(new WebViewClient());
         final Context contextToPass = this;
 
