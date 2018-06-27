@@ -24,6 +24,6 @@ public class WebDummy extends AppCompatActivity {
         // Provide pinch zoom operation
         webview.getSettings().setBuiltInZoomControls(true);
 
-        webview.loadUrl("http://www.lconnect.wit.edu");
+        webview.loadUrl("https://cas.wit.edu");
     }
 }
