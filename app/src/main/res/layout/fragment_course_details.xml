@@ -6,9 +6,34 @@
     tools:context=".CourseDetails">
 
     <!-- TODO: Update blank fragment layout -->
+    <Button
+        android:layout_width="49dp"
+        android:layout_height="36dp"
+        android:layout_gravity="right"
+        android:text="@string/close_fragment" />
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/course_name_fragment"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/course_number_fragment"
+        android:layout_marginTop="40dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/professor_fragment"
+        android:layout_marginTop="60dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/location_fragment"
+        android:layout_marginTop="80dp"/>
 
 </FrameLayout>

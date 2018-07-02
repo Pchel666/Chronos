@@ -18,5 +18,9 @@
     <string name="getSchedButton"></string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="course_name_fragment">This is the Course Name</string>
+    <string name="course_number_fragment">This is the Course Number</string>
+    <string name="professor_fragment">This is the Professor</string>
+    <string name="location_fragment">This is the Location</string>
+    <string name="close_fragment">X</string>
 </resources>
