@@ -28,18 +28,6 @@
             android:layout_weight="2" >
 
             <TextView
-                android:id="@+id/sundayDateTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="6dp"
-                android:text=""
-                android:textColor="@color/darkGray"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-
-            <TextView
                 android:id="@+id/sundayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -57,18 +45,6 @@
             android:layout_width="0dp"
             android:layout_height="36dp"
             android:layout_weight="2" >
-
-            <TextView
-                android:id="@+id/mondayDateTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="6dp"
-                android:text=""
-                android:textColor="@color/darkGray"
-                android:textSize="30sp"
-                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/mondayTextView"
@@ -91,18 +67,6 @@
             android:layout_weight="2" >
 
             <TextView
-                android:id="@+id/tuesdayDateTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="6dp"
-                android:text=""
-                android:textColor="@color/darkGray"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-
-            <TextView
                 android:id="@+id/tuesdayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -120,18 +84,6 @@
             android:layout_width="0dp"
             android:layout_height="36dp"
             android:layout_weight="2" >
-
-            <TextView
-                android:id="@+id/wednesdayDateTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="6dp"
-                android:text=""
-                android:textColor="@color/darkGray"
-                android:textSize="30sp"
-                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/wednesdayTextView"
@@ -153,18 +105,6 @@
             android:layout_weight="2" >
 
             <TextView
-                android:id="@+id/thursdayDateTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="6dp"
-                android:text=""
-                android:textColor="@color/darkGray"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-
-            <TextView
                 android:id="@+id/thursdayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -184,19 +124,6 @@
             android:layout_weight="2" >
 
             <TextView
-                android:id="@+id/fridayDateTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="6dp"
-                android:layout_marginLeft="6dp"
-                android:text=""
-                android:textColor="@color/darkGray"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-
-            <TextView
                 android:id="@+id/fridayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -214,18 +141,6 @@
             android:layout_width="0dp"
             android:layout_height="36dp"
             android:layout_weight="2" >
-
-            <TextView
-                android:id="@+id/saturdayDateTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="6dp"
-                android:text=""
-                android:textColor="@color/darkGray"
-                android:textSize="30sp"
-                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/saturdayTextView"
