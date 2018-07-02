@@ -33,6 +33,7 @@ public class WebDummy extends AppCompatActivity {
 
     List<String> coursesRead;
     Map<String, Course> courses;
+    List<Lecture> lectures;
     List<String> links;
 
     @Override
@@ -45,6 +46,7 @@ public class WebDummy extends AppCompatActivity {
 
         courses = new HashMap<String, Course>();
         coursesRead = new ArrayList<>();
+        lectures = new ArrayList<>();
         links = new ArrayList<>();
 
         // Enable JavaScript
@@ -79,19 +81,35 @@ public class WebDummy extends AppCompatActivity {
                                         ".getElementsByTagName('table')[7].innerHTML);"
                         );
                         click=0;
-                    } else if(getLinksLeft()==0) {
+                    } else if(getLinksLeft()==0) { // If there are no more course detail links to follow...
+                        //Delcare an activity for the schedule
                         Intent dataToSchedule = new Intent();
                         dataToSchedule.setClass(WebDummy.this, PortraitSchedule.class);
+
+                        //Add the courses to the dataToSend
                         int i=0;
                         for(Course course:courses.values()){
                             dataToSchedule.putExtra("course"+i+"",course);
                             i++;
 
                         }
-                        dataToSchedule.putExtra("numCourses", courses.size());
 
+                        //Add the meeting times to the dataToSend
+                        i=0;
+                        for(Lecture time:lectures){
+                            dataToSchedule.putExtra("lecture"+i+"",time);
+                            i++;
+
+                        }
+
+                        dataToSchedule.putExtra("numCourses", courses.size());
+                        dataToSchedule.putExtra("numLectures", lectures.size());
+
+
+                        //Send the data to the schedule activity
                         startActivity(dataToSchedule);
                     } else {
+
                         //follow the link to course details page
                         webview.loadUrl("https://prodweb2.wit.edu"+links.get(click).replace("amp;",""));
                         myButton.setText("Click to Scrape Details Page"); // Adapt the button text for the page user is on
@@ -210,12 +228,19 @@ public class WebDummy extends AppCompatActivity {
 
                     // Adds meeting times to course
                     for (int i = 0; i < details.get(9).length(); i++) {
+                        //Build Lecture Data
                         Lecture lectureToAdd = new Lecture();
+                        lectureToAdd.courseNumber = courseNumber;
                         lectureToAdd.day = details.get(9).charAt(i);
                         lectureToAdd.startTime = details.get(8).split("-")[0];
                         lectureToAdd.endTime = details.get(8).split("-")[1];
                         lectureToAdd.place = details.get(10);
                         courseToAdd.addLecture(lectureToAdd);
+
+                        //Add the lecture to the list of meeting times if it hasn't yet been added
+                        if (!coursesRead.contains(courseId)) {
+                            lectures.add(lectureToAdd);
+                        }
                     }
 
                     // if the course already existed in the courses Map, the course has just been updated
@@ -223,6 +248,8 @@ public class WebDummy extends AppCompatActivity {
                     if (!courses.containsKey(courseNumber)) {
                         courses.put(courseNumber, courseToAdd);
                     }
+
+                    //Ensure the same details page isn't read twice
                     coursesRead.add(courseId);
                     page=0;
                 }
