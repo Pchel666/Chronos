@@ -2,8 +2,6 @@ package edu.wit.mobileapp.chronos;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
-import android.os.PatternMatcher;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,7 +17,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class WebDummy extends AppCompatActivity {
 
@@ -70,17 +67,23 @@ public class WebDummy extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //Week at a glance page doesn't have course name, and not all rows have 7 columns
+                // Week at a glance page doesn't have course name, and not all rows have 7 columns...
                 // Gets data from course details pages
-                if(page==0) {
-                    if (click == -1){
+                if(page==0) { // If the current page is Week at Glance
+                    if (click == -1){ // If button hasn't yet been clicked
+
+                        // Create a list of 'course details' links
                         webview.loadUrl(
                                 "javascript:window.INTERFACE.processContent(document.getElementsByTagName('body')[0]" +
                                         ".getElementsByTagName('table')[7].innerHTML);"
                         );
+
+                        // Inform 'click' variable that the button has been clicked
                         click=0;
+
                     } else if(getLinksLeft()==0) { // If there are no more course detail links to follow...
-                        //Delcare an activity for the schedule
+
+                        // Delcare an Intent for the Schedule activity
                         Intent dataToSchedule = new Intent();
                         dataToSchedule.setClass(WebDummy.this, PortraitSchedule.class);
 
@@ -100,15 +103,16 @@ public class WebDummy extends AppCompatActivity {
 
                         }
 
+                        //Add the counts of courses and meeting times to dataToSend
                         dataToSchedule.putExtra("numCourses", courses.size());
                         dataToSchedule.putExtra("numLectures", lectures.size());
 
 
                         //Send the data to the schedule activity
                         startActivity(dataToSchedule);
-                    } else {
+                    } else { // When there are still links yet to be clicked
 
-                        //follow the link to course details page
+                        // Follow the link to course details page
                         webview.loadUrl("https://prodweb2.wit.edu"+links.get(click).replace("amp;",""));
                         myButton.setText("Click to Scrape Details Page"); // Adapt the button text for the page user is on
                         page=1; // WebView is now on a Details Page
@@ -118,12 +122,13 @@ public class WebDummy extends AppCompatActivity {
 
 
                 } else if (page == 1) {
+
                     // get info from courseDetailsPage
                     webview.loadUrl(
                             "javascript:window.INTERFACE.processContent(document.getElementsByClassName('pagebodydiv')[0].innerHTML);"
                     );
 
-                    //return to Week at a Glance
+                    // Go Back to Week at a Glance
                     webview.loadUrl(
                             "javascript:window.history.back();"
                     );
@@ -139,6 +144,7 @@ public class WebDummy extends AppCompatActivity {
 
             }
 
+            // Method that returns the number of links that haven't been clicked
             int getLinksLeft() {
                 return links.size()-click;
             }
@@ -176,20 +182,24 @@ public class WebDummy extends AppCompatActivity {
             if(!aContent.equals("undefined")) {
 
 
-                if(page == 0){  //process the request to count the links
+                if(page == 0){
+                    // If processContent reaches here, that means this is the first time the button is clicked
+                    // Therefore, this button click should create the list of links to all the course details pages
 
                     // Add links to the links list
                     Matcher linkMatcher = linkPattern.matcher(aContent);
                     do {
                         if (linkMatcher.find() && linkMatcher.groupCount() == 1) {
                             if(!links.contains(linkMatcher.group(1))){
+                                //Only add a link to the list if it has not already been added
                                 links.add(linkMatcher.group(1));
                             }
                         }
                     } while (!linkMatcher.hitEnd());
 
                     myButton.setText(String.format("SCRAPE NEXT LINK (%d Remaining)", links.size()));
-                } else { //process the request to get course details
+                } else {
+                    //process the request to get course details
 
                     String courseName = "";
                     String courseNumber = "";
@@ -200,7 +210,6 @@ public class WebDummy extends AppCompatActivity {
                     if (titleMatcher.find() && titleMatcher.groupCount() == 3) {
                         courseName = titleMatcher.group(1);
                         courseNumber = titleMatcher.group(2);
-                        courseId = titleMatcher.group(2)+titleMatcher.group(3);
                     }
 
                     // Matches Meeting Time Details
@@ -247,7 +256,7 @@ public class WebDummy extends AppCompatActivity {
                     if (!courses.containsKey(courseNumber)) {
                         courses.put(courseNumber, courseToAdd);
                     }
-                    page=0;
+                    page=0; // The page is now Week at a glance
                 }
             }
         }
