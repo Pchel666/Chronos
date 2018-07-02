@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<View
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/calendar_cells"
     android:layout_width="fill_parent"
@@ -17,160 +17,183 @@
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="@color/darkGray"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="60dp"
+        android:layout_below="@id/hour_divider1">
     </View>
     <View
         android:id="@+id/hour_divider3"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="@color/darkGray"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="60dp"
+        android:layout_below="@id/hour_divider2">
     </View>
     <View
         android:id="@+id/hour_divider4"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="@color/darkGray"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="60dp"
+        android:layout_below="@id/hour_divider3">
     </View>
     <View
         android:id="@+id/hour_divider5"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="@color/darkGray"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="60dp"
+        android:layout_below="@id/hour_divider4">
     </View>
     <View
         android:id="@+id/hour_divider6"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="@color/darkGray"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="60dp"
+        android:layout_below="@id/hour_divider5">
     </View>
     <View
         android:id="@+id/hour_divider7"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="@color/darkGray"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="60dp"
+        android:layout_below="@id/hour_divider6">
     </View>
     <View
         android:id="@+id/hour_divider8"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="@color/darkGray"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="60dp"
+        android:layout_below="@id/hour_divider7">
     </View>
     <View
         android:id="@+id/hour_divider9"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="@color/darkGray"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="60dp"
+        android:layout_below="@id/hour_divider8">
     </View>
     <View
         android:id="@+id/hour_divider10"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="@color/darkGray"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="60dp"
+        android:layout_below="@id/hour_divider9">
     </View>
     <View
         android:id="@+id/hour_divider11"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="@color/darkGray"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="60dp"
+        android:layout_below="@id/hour_divider10">
     </View>
     <View
         android:id="@+id/hour_divider12"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="@color/darkGray"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="60dp"
+        android:layout_below="@id/hour_divider11">
     </View>
     <View
         android:id="@+id/hour_divider13"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="@color/darkGray"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="60dp"
+        android:layout_below="@id/hour_divider12">
     </View>
     <View
         android:id="@+id/hour_divider14"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="@color/darkGray"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="60dp"
+        android:layout_below="@id/hour_divider13">
     </View>
     <View
         android:id="@+id/hour_divider15"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="@color/darkGray"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="60dp"
+        android:layout_below="@id/hour_divider14">
     </View>
     <View
         android:id="@+id/hour_divider16"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="@color/darkGray"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="60dp"
+        android:layout_below="@id/hour_divider15">
     </View>
     <View
         android:id="@+id/hour_divider17"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="@color/darkGray"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="60dp"
+        android:layout_below="@id/hour_divider16">
     </View>
     <View
         android:id="@+id/hour_divider18"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="@color/darkGray"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="60dp"
+        android:layout_below="@id/hour_divider17">
     </View>
     <View
         android:id="@+id/hour_divider19"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="@color/darkGray"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="60dp"
+        android:layout_below="@id/hour_divider18">
     </View>
     <View
         android:id="@+id/hour_divider20"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="@color/darkGray"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="60dp"
+        android:layout_below="@id/hour_divider19">
     </View>
     <View
         android:id="@+id/hour_divider21"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="@color/darkGray"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="60dp"
+        android:layout_below="@id/hour_divider20">
     </View>
     <View
         android:id="@+id/hour_divider22"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="@color/darkGray"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="60dp"
+        android:layout_below="@id/hour_divider21">
     </View>
     <View
         android:id="@+id/hour_divider23"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="@color/darkGray"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="60dp"
+        android:layout_below="@id/hour_divider22">
     </View>
     <View
         android:id="@+id/hour_divider24"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="@color/darkGray"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="60dp"
+        android:layout_below="@id/hour_divider23">
     </View>
-</View>
+</RelativeLayout>
