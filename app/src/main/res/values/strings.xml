@@ -1,5 +1,37 @@
 <resources>
     <string name="app_name">Chronos</string>
+    <string name="mon">Mon</string>
+    <string name="tue">Tue</string>
+    <string name="wed">Wed</string>
+    <string name="thu">Thu</string>
+    <string name="fri">Fri</string>
+    <string name="sat">Sat</string>
+    <string name="sun">Sun</string>
+    <string name="am12">12 am</string>
+    <string name="am1">1 am</string>
+    <string name="am2">2 am</string>
+    <string name="am3">3 am</string>
+    <string name="am4">4 am</string>
+    <string name="am5">5 am</string>
+    <string name="am6">6 am</string>
+    <string name="am7">7 am</string>
+    <string name="am8">8 am</string>
+    <string name="am9">9 am</string>
+    <string name="am10">10 am</string>
+    <string name="am11">11 am</string>
+    <string name="pm12">12 pm</string>
+    <string name="pm1">1 pm</string>
+    <string name="pm2">2 pm</string>
+    <string name="pm3">3 pm</string>
+    <string name="pm4">4 pm</string>
+    <string name="pm5">5 pm</string>
+    <string name="pm6">6 pm</string>
+    <string name="pm7">7 pm</string>
+    <string name="pm8">8 pm</string>
+    <string name="pm9">9 pm</string>
+    <string name="pm10">10 pm</string>
+    <string name="pm11">11 pm</string>
+
 
     <!-- Strings related to login -->
     <string name="scrape">Scrape (only on correct page)</string>
