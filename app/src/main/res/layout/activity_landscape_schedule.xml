@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:padding="0dp">
 
     <LinearLayout
@@ -14,33 +14,10 @@
         android:layout_marginTop="0dp" >
 
         <RelativeLayout
-            android:id="@+id/currentMonthRelativeLayout"
+            android:id="@+id/spacer"
             android:layout_width="0dp"
             android:layout_height="36dp"
             android:layout_weight="1" >
-
-            <TextView
-                android:id="@+id/currentMonthTextView"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:gravity="center"
-                android:text=""
-                android:textSize="15dp"
-                android:textStyle="bold"
-                android:textColor="@color/darkGray" />
-
-            <TextView
-                android:id="@+id/currentYearTextView"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:gravity="center"
-                android:text=""
-                android:textSize="13dp"
-                android:textStyle="bold"
-                android:textColor="@color/darkGray" />
-
         </RelativeLayout>
 
         <RelativeLayout
@@ -301,7 +278,7 @@
                     android:layout_weight="1"
                     android:padding="0dp" >
 
-                    <include layout="@layout/calendar_zebra" />
+                    <include layout="@layout/calendar_cells" />
 
                     <TextView
                         android:id="@+id/time12amTextView"
@@ -574,7 +551,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="2" >
 
-                    <include layout="@layout/calendar_zebra" />
+                    <include layout="@layout/calendar_cells" />
 
                 </RelativeLayout>
 
@@ -584,7 +561,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="2" >
 
-                    <include layout="@layout/calendar_zebra" />
+                    <include layout="@layout/calendar_cells" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -593,7 +570,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="2" >
 
-                    <include layout="@layout/calendar_zebra" />
+                    <include layout="@layout/calendar_cells" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -602,7 +579,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="2" >
 
-                    <include layout="@layout/calendar_zebra" />
+                    <include layout="@layout/calendar_cells" />
 
                 </RelativeLayout>
 
@@ -612,7 +589,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="2" >
 
-                    <include layout="@layout/calendar_zebra" />
+                    <include layout="@layout/calendar_cells" />
 
                 </RelativeLayout>
 
@@ -622,7 +599,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="2" >
 
-                    <include layout="@layout/calendar_zebra" />
+                    <include layout="@layout/calendar_cells" />
 
                 </RelativeLayout>
 
@@ -632,7 +609,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="2" >
 
-                    <include layout="@layout/calendar_zebra" />
+                    <include layout="@layout/calendar_cells" />
 
                 </RelativeLayout>
             </LinearLayout>
