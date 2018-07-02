@@ -31,7 +31,6 @@ public class WebDummy extends AppCompatActivity {
     WebView webview;
     Button myButton;
 
-    List<String> coursesRead;
     Map<String, Course> courses;
     List<Lecture> lectures;
     List<String> links;
@@ -45,7 +44,6 @@ public class WebDummy extends AppCompatActivity {
         final Context contextToPass = this;
 
         courses = new HashMap<String, Course>();
-        coursesRead = new ArrayList<>();
         lectures = new ArrayList<>();
         links = new ArrayList<>();
 
@@ -184,7 +182,9 @@ public class WebDummy extends AppCompatActivity {
                     Matcher linkMatcher = linkPattern.matcher(aContent);
                     do {
                         if (linkMatcher.find() && linkMatcher.groupCount() == 1) {
-                            links.add(linkMatcher.group(1));
+                            if(!links.contains(linkMatcher.group(1))){
+                                links.add(linkMatcher.group(1));
+                            }
                         }
                     } while (!linkMatcher.hitEnd());
 
@@ -218,7 +218,7 @@ public class WebDummy extends AppCompatActivity {
 
                     // Creates a course to add to the schedule
                     Course courseToAdd;
-                    if (!courses.isEmpty() && courses.containsKey(courseNumber) && !coursesRead.contains(courseId)) {
+                    if (!courses.isEmpty() && courses.containsKey(courseNumber)) {
                         courseToAdd = courses.get(courseNumber);
                     } else {
                         courseToAdd = new Course(courseNumber);
@@ -237,10 +237,9 @@ public class WebDummy extends AppCompatActivity {
                         lectureToAdd.place = details.get(10);
                         courseToAdd.addLecture(lectureToAdd);
 
-                        //Add the lecture to the list of meeting times if it hasn't yet been added
-                        if (!coursesRead.contains(courseId)) {
-                            lectures.add(lectureToAdd);
-                        }
+                        //Add the lecture to the list of meeting times
+                        lectures.add(lectureToAdd);
+
                     }
 
                     // if the course already existed in the courses Map, the course has just been updated
@@ -248,9 +247,6 @@ public class WebDummy extends AppCompatActivity {
                     if (!courses.containsKey(courseNumber)) {
                         courses.put(courseNumber, courseToAdd);
                     }
-
-                    //Ensure the same details page isn't read twice
-                    coursesRead.add(courseId);
                     page=0;
                 }
             }
