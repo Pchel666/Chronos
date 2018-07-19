@@ -63,6 +63,8 @@ public class WebDummy extends AppCompatActivity {
         // Button that uses JavaScript to scrape html data from the webview's current page
         myButton = findViewById(R.id.button);
         myButton.setText("Count MeetingTimes");
+
+
         myButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
