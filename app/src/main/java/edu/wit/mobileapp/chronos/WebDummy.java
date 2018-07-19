@@ -26,7 +26,6 @@ public class WebDummy extends AppCompatActivity {
     int page = 0;
 
     WebView webview;
-    Button myButton;
 
     Map<String, Course> courses;
     List<Lecture> lectures;
@@ -60,10 +59,6 @@ public class WebDummy extends AppCompatActivity {
         //Load leopardweb
         webview.loadUrl("https://cas.wit.edu");
 
-        // Button that uses JavaScript to scrape html data from the webview's current page
-        myButton = findViewById(R.id.button);
-        myButton.setText("Click To Import Data");
-
 
         //Web View Client to headlessly browse the web page
         webview.setWebViewClient(new WebViewClient(){
@@ -88,109 +83,100 @@ public class WebDummy extends AppCompatActivity {
 
                     //If Week at a Glance OR Course details page loads...
 
-                    //if the links haven't been gathered yet, click the button for the first time to get the links
+                    //if the links haven't been gathered yet, call the click method for the first time to get the links
                     if(links.isEmpty()){
-                        myButton.performClick();
+                        clickLink();
                     }
                     while(links.isEmpty()){
                         //wait for list of links to populate
                     }
 
-                    //Click the button to scrape pages
-                    myButton.performClick();
+                    //Click the next link involved with to scraping pages
+                    clickLink();
                 }
             }
         });
-
-
-        myButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                // Week at a glance page doesn't have course name, and not all rows have 7 columns...
-                // Gets data from course details pages
-                if(page==0) { // If the current page is Week at Glance
-                    if (click == -1){ // If button hasn't yet been clicked
-
-                        // Create a list of 'course details' links
-                        webview.loadUrl(
-                                "javascript:window.INTERFACE.processContent(document.getElementsByTagName('body')[0]" +
-                                        ".getElementsByTagName('table')[7].innerHTML);"
-                        );
-
-                        // Inform 'click' variable that the button has been clicked
-                        click=0;
-
-
-                    } else if(getLinksLeft()==0) { // If there are no more course detail links to follow...
-
-                        // Delcare an Intent for the Schedule activity
-                        Intent dataToSchedule = new Intent();
-                        dataToSchedule.setClass(WebDummy.this, PortraitSchedule.class);
-
-                        //Add the courses to the dataToSend
-                        int i=0;
-                        for(Course course:courses.values()){
-                            dataToSchedule.putExtra("course"+i+"",course);
-                            i++;
-
-                        }
-
-                        //Add the meeting times to the dataToSend
-                        i=0;
-                        for(Lecture time:lectures){
-                            dataToSchedule.putExtra("lecture"+i+"",time);
-                            i++;
-
-                        }
-
-                        //Add the counts of courses and meeting times to dataToSend
-                        dataToSchedule.putExtra("numCourses", courses.size());
-                        dataToSchedule.putExtra("numLectures", lectures.size());
-
-
-                        //Send the data to the schedule activity
-                        startActivity(dataToSchedule);
-                    } else { // When there are still links yet to be clicked
-
-                        // Follow the link to course details page
-                        webview.loadUrl("https://prodweb2.wit.edu"+links.get(click).replace("amp;",""));
-                        page=1; // WebView is now on a Details Page
-                        click++; // Set the next details page to go to
-
-                    }
-
-
-                } else if (page == 1) { //If page is a courseDetailsPage
-
-                    // get info from courseDetailsPage
-                    webview.loadUrl(
-                            "javascript:window.INTERFACE.processContent(document.getElementsByClassName('pagebodydiv')[0].innerHTML);"
-                    );
-
-                    // Go Back to Week at a Glance
-                    webview.loadUrl(
-                            "javascript:window.history.back();"
-                    );
-
-                }
-
-
-            }
-
-            // Method that returns the number of links that haven't been clicked
-            int getLinksLeft() {
-                return links.size()-click;
-            }
-
-        });
-
-
-
 
     }
 
 
+    void clickLink(){
+
+        // Week at a glance page doesn't have course name, and not all rows have 7 columns...
+        // Gets data from course details pages
+        if(page==0) { // If the current page is Week at Glance
+            if (click == -1){ // If button hasn't yet been clicked
+
+                // Create a list of 'course details' links
+                webview.loadUrl(
+                        "javascript:window.INTERFACE.processContent(document.getElementsByTagName('body')[0]" +
+                                ".getElementsByTagName('table')[7].innerHTML);"
+                );
+
+                // Inform 'click' variable that the button has been clicked
+                click=0;
+
+
+            } else if(getLinksLeft()==0) { // If there are no more course detail links to follow...
+
+                // Delcare an Intent for the Schedule activity
+                Intent dataToSchedule = new Intent();
+                dataToSchedule.setClass(WebDummy.this, PortraitSchedule.class);
+
+                //Add the courses to the dataToSend
+                int i=0;
+                for(Course course:courses.values()){
+                    dataToSchedule.putExtra("course"+i+"",course);
+                    i++;
+
+                }
+
+                //Add the meeting times to the dataToSend
+                i=0;
+                for(Lecture time:lectures){
+                    dataToSchedule.putExtra("lecture"+i+"",time);
+                    i++;
+
+                }
+
+                //Add the counts of courses and meeting times to dataToSend
+                dataToSchedule.putExtra("numCourses", courses.size());
+                dataToSchedule.putExtra("numLectures", lectures.size());
+
+
+                //Send the data to the schedule activity
+                startActivity(dataToSchedule);
+            } else { // When there are still links yet to be clicked
+
+                // Follow the link to course details page
+                webview.loadUrl("https://prodweb2.wit.edu"+links.get(click).replace("amp;",""));
+                page=1; // WebView is now on a Details Page
+                click++; // Set the next details page to go to
+
+            }
+
+
+        } else if (page == 1) { //If page is a courseDetailsPage
+
+            // get info from courseDetailsPage
+            webview.loadUrl(
+                    "javascript:window.INTERFACE.processContent(document.getElementsByClassName('pagebodydiv')[0].innerHTML);"
+            );
+
+            // Go Back to Week at a Glance
+            webview.loadUrl(
+                    "javascript:window.history.back();"
+            );
+
+        }
+    }
+
+
+
+    // Method that returns the number of links that haven't been clicked
+    int getLinksLeft() {
+        return links.size()-click;
+    }
 
     // An instance of this class will be registered as a JavaScript interface
     class MyJavaScriptInterface

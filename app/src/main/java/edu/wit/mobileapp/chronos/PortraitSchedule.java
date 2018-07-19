@@ -41,10 +41,9 @@ public class PortraitSchedule extends AppCompatActivity {
         }
         editor = saved.edit();
 
-        //Used for resetting the app (clearing courses, meetingTimes, and fromLogin from the device)
+//       // Used for resetting the app (clearing courses, meetingTimes, and fromLogin from the device)
 //        editor.clear();
 //        editor.commit();
-
 
         //Loads a boolean from device data, that tells us whether or not we arrived at this schedule from the login page
         fromLogin = saved.getBoolean("fromLogin", false);
