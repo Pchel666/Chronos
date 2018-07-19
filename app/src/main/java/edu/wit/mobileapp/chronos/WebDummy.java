@@ -62,7 +62,45 @@ public class WebDummy extends AppCompatActivity {
 
         // Button that uses JavaScript to scrape html data from the webview's current page
         myButton = findViewById(R.id.button);
-        myButton.setText("Count MeetingTimes");
+        myButton.setText("Click To Import Data");
+
+
+        //Web View Client to headlessly browse the web page
+        webview.setWebViewClient(new WebViewClient(){
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+
+
+                if(url.equals("https://prodweb2.wit.edu/SSBPROD/twbkwbis.P_GenMenu?name=bmenu.P_MainMnu")) {
+                    //If the main menu has loaded, follow the "Student and Financial Aid" Link
+                    webview.loadUrl("https://prodweb2.wit.edu/SSBPROD/twbkwbis.P_GenMenu?name=bmenu.P_StuMainMnu");
+
+                } else if(url.equals("https://prodweb2.wit.edu/SSBPROD/twbkwbis.P_GenMenu?name=bmenu.P_StuMainMnu")) {
+                    //If the student menu has loaded, follow the "Registration" Link
+                    webview.loadUrl("https://prodweb2.wit.edu/SSBPROD/twbkwbis.P_GenMenu?name=bmenu.P_RegMnu");
+
+                } else if(url.equals("https://prodweb2.wit.edu/SSBPROD/twbkwbis.P_GenMenu?name=bmenu.P_RegMnu")) {
+                    //if the registration menu has loaded, follow the "Week at a Glance" link
+                    webview.loadUrl("https://prodweb2.wit.edu/SSBPROD/bwskfshd.P_CrseSchd");
+
+                } else if(url.contains("https://prodweb2.wit.edu/SSBPROD/bwskfshd.P_CrseSchd")) {
+
+                    //If Week at a Glance OR Course details page loads...
+
+                    //if the links haven't been gathered yet, click the button for the first time to get the links
+                    if(links.isEmpty()){
+                        myButton.performClick();
+                    }
+                    while(links.isEmpty()){
+                        //wait for list of links to populate
+                    }
+
+                    //Click the button to scrape pages
+                    myButton.performClick();
+                }
+            }
+        });
 
 
         myButton.setOnClickListener(new View.OnClickListener() {
@@ -82,6 +120,7 @@ public class WebDummy extends AppCompatActivity {
 
                         // Inform 'click' variable that the button has been clicked
                         click=0;
+
 
                     } else if(getLinksLeft()==0) { // If there are no more course detail links to follow...
 
@@ -116,14 +155,13 @@ public class WebDummy extends AppCompatActivity {
 
                         // Follow the link to course details page
                         webview.loadUrl("https://prodweb2.wit.edu"+links.get(click).replace("amp;",""));
-                        myButton.setText("Click to Scrape Details Page"); // Adapt the button text for the page user is on
                         page=1; // WebView is now on a Details Page
                         click++; // Set the next details page to go to
 
                     }
 
 
-                } else if (page == 1) {
+                } else if (page == 1) { //If page is a courseDetailsPage
 
                     // get info from courseDetailsPage
                     webview.loadUrl(
@@ -135,12 +173,6 @@ public class WebDummy extends AppCompatActivity {
                             "javascript:window.history.back();"
                     );
 
-                    // Adapt the button text for the page user is on, according to how many links are left to scrape
-                    if (getLinksLeft()>0){
-                        myButton.setText(String.format("SCRAPE NEXT LINK (%d Remaining)", getLinksLeft()));
-                    } else {
-                        myButton.setText("Click to Import Courses To Chronos");
-                    }
                 }
 
 
@@ -199,7 +231,6 @@ public class WebDummy extends AppCompatActivity {
                         }
                     } while (!linkMatcher.hitEnd());
 
-                    myButton.setText(String.format("SCRAPE NEXT LINK (%d Remaining)", links.size()));
                 } else {
                     //process the request to get course details
 
