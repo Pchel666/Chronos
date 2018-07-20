@@ -22,25 +22,6 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/sundayHeaderRelativeLayout"
-            android:layout_width="0dp"
-            android:layout_height="36dp"
-            android:layout_weight="2" >
-
-            <TextView
-                android:id="@+id/sundayTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="6dp"
-                android:text="@string/sun"
-                android:textColor="@color/darkGray"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-        </RelativeLayout>
-
-        <RelativeLayout
             android:id="@+id/mondayHeaderRelativeLayout"
             android:layout_width="0dp"
             android:layout_height="36dp"
@@ -135,25 +116,6 @@
                 android:textSize="15sp"
                 android:textStyle="bold" />
         </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/saturdayHeaderRelativeLayout"
-            android:layout_width="0dp"
-            android:layout_height="36dp"
-            android:layout_weight="2" >
-
-            <TextView
-                android:id="@+id/saturdayTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="6dp"
-                android:text="@string/sat"
-                android:textColor="@color/darkGray"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-        </RelativeLayout>
     </LinearLayout>
 
     <View
@@ -195,7 +157,6 @@
                     android:padding="0dp" >
 
                     <include layout="@layout/calendar_cells" />
-                    <!-- TODO: Fix misalignment with row dividers (in calendar_cells) -->
                     <TextView
                         android:id="@+id/time12amTextView"
                         android:layout_width="wrap_content"
@@ -462,16 +423,6 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:id="@+id/sundayRelativeLayout"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2" >
-
-                    <include layout="@layout/calendar_cells" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
                     android:id="@+id/mondayRelativeLayout"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -511,16 +462,6 @@
 
                 <RelativeLayout
                     android:id="@+id/fridayRelativeLayout"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2" >
-
-                    <include layout="@layout/calendar_cells" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/saturdayRelativeLayout"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2" >

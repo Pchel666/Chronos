@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.google.gson.Gson;
 
@@ -52,7 +55,31 @@ public class LandscapeSchedule extends AppCompatActivity {
 
     private void fillSchedule(){
         //TODO: uses courses and meeting times to fill the schedule interface
-
+        RelativeLayout currentLayout = new RelativeLayout(this);
+        for(int i = 0; i < meetingTimes.size(); i++){
+            Button cbtn = new Button(this);
+            cbtn.setId(i);
+            cbtn.setTag(meetingTimes.get(i).courseNumber);
+            cbtn.setText(meetingTimes.get(i).courseNumber);
+            cbtn.setBackgroundColor(getResources().getColor(R.color.ivory));
+            RelativeLayout.LayoutParams layParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+            //TODO: make a method to convert time to margins
+            layParams.setMargins(0,0,0,0);
+            cbtn.setLayoutParams(layParams);
+            char currentDay = meetingTimes.get(i).day;
+            switch (currentDay){
+                case 'M': currentLayout = (RelativeLayout)findViewById(R.id.mondayRelativeLayout);
+                case 'T': currentLayout = (RelativeLayout)findViewById(R.id.tuesdayRelativeLayout);
+                case 'W': currentLayout = (RelativeLayout)findViewById(R.id.wednesdayRelativeLayout);
+                case 'R': currentLayout = (RelativeLayout)findViewById(R.id.thursdayRelativeLayout);
+                case 'F': currentLayout = (RelativeLayout)findViewById(R.id.fridayRelativeLayout);
+            }
+            currentLayout.addView(cbtn);
+            //TODO: make onClick listener
+            //String key = meetingTimes.get(i).courseNumber;
+            //String courseName = courses.get(key).name;
+            //rest of courses data and bundle to send to fragment...
+        }
         // break point to check data
         System.out.print("break");
     }
