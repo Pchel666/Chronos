@@ -3,6 +3,7 @@ package edu.wit.mobileapp.chronos;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -127,6 +128,19 @@ public class PortraitSchedule extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        int orientation=newConfig.orientation;
+
+        // If the orientation has just changed to landscape, send the user to the Landscape schedule activity
+        if(orientation == 2){
+            Intent turnLandscape = new Intent();
+            turnLandscape.setClass(PortraitSchedule.this, LandscapeSchedule.class);
+            startActivity(turnLandscape);
+        }
+    }
 
     private void fillSchedule(){
         //TODO: uses courses and meeting times to fill the schedule interface

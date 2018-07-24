@@ -2,14 +2,22 @@ package edu.wit.mobileapp.chronos;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.CookieManager;
 import android.webkit.JavascriptInterface;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,6 +34,8 @@ public class WebDummy extends AppCompatActivity {
     int page = 0;
 
     WebView webview;
+    ImageView loading;
+    TextView loadingTV;
 
     Map<String, Course> courses;
     List<Lecture> lectures;
@@ -35,9 +45,13 @@ public class WebDummy extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_dummy);
+
         webview = (WebView)findViewById(R.id.webView1);
         webview.setWebViewClient(new WebViewClient());
-        final Context contextToPass = this;
+
+        loading = findViewById(R.id.loadingImg);
+        loadingTV = findViewById(R.id.loadingTextView);
+
 
         courses = new HashMap<String, Course>();
         lectures = new ArrayList<>();
@@ -56,9 +70,12 @@ public class WebDummy extends AppCompatActivity {
         // JavaScript for html scraping
         webview.addJavascriptInterface(new MyJavaScriptInterface(),"INTERFACE");
 
+        // Ensures user has to enter credentials when arriving at this activity
+        CookieManager.getInstance().removeAllCookies(null);
+        CookieManager.getInstance().flush();
+
         //Load leopardweb
         webview.loadUrl("https://cas.wit.edu");
-
 
         //Web View Client to headlessly browse the web page
         webview.setWebViewClient(new WebViewClient(){
@@ -69,7 +86,13 @@ public class WebDummy extends AppCompatActivity {
 
                 if(url.equals("https://prodweb2.wit.edu/SSBPROD/twbkwbis.P_GenMenu?name=bmenu.P_MainMnu")) {
                     //If the main menu has loaded, follow the "Student and Financial Aid" Link
+                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) webview.getLayoutParams();
+                    params.height = 0;
+                    webview.setLayoutParams(params);
                     webview.loadUrl("https://prodweb2.wit.edu/SSBPROD/twbkwbis.P_GenMenu?name=bmenu.P_StuMainMnu");
+
+                    //Let user know their data is being gathered
+                    loadingTV.setText("Please Wait\nGathering Data from LeopardWeb");
 
                 } else if(url.equals("https://prodweb2.wit.edu/SSBPROD/twbkwbis.P_GenMenu?name=bmenu.P_StuMainMnu")) {
                     //If the student menu has loaded, follow the "Registration" Link
@@ -90,6 +113,10 @@ public class WebDummy extends AppCompatActivity {
                     while(links.isEmpty()){
                         //wait for list of links to populate
                     }
+
+                    //Update user on import progress
+                    loadingTV.setText(String.format(getString(R.string.import_progress), ((double)click / (double) links.size())*100));
+
 
                     //Click the next link involved with to scraping pages
                     clickLink();

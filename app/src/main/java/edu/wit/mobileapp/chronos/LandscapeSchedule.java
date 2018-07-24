@@ -1,7 +1,9 @@
 package edu.wit.mobileapp.chronos;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -10,6 +12,8 @@ import android.widget.RelativeLayout;
 
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +33,11 @@ public class LandscapeSchedule extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landscape_schedule);
+
+
+        //Initializes the structures for courses and meetingTimes
+        courses = new HashMap<>();
+        meetingTimes = new ArrayList<>();
 
         //Initilizes gson, savedPreferences and savedPreferences.Editor
         //Used for storing data to the device for future runs of application
@@ -51,6 +60,20 @@ public class LandscapeSchedule extends AppCompatActivity {
         }
 
         fillSchedule();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        int orientation=newConfig.orientation;
+
+        //If the orientation has just been changed to portrait, send the user to the portrait schedule activity
+        if(orientation == 1) {
+            Intent turnPortrait = new Intent();
+            turnPortrait.setClass(LandscapeSchedule.this, PortraitSchedule.class);
+            startActivity(turnPortrait);
+        }
     }
 
     private void fillSchedule(){
