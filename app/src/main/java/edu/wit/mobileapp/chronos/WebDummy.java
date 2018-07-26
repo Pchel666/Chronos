@@ -69,14 +69,13 @@ public class WebDummy extends AppCompatActivity {
         CookieManager.getInstance().flush();
 
         //Load leopardweb
-        webview.loadUrl("https://cas.wit.edu");
+        webview.loadUrl("https://cas.wit.edu/");
 
         //Web View Client to headlessly browse the web page
         webview.setWebViewClient(new WebViewClient(){
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                //TODO: make sure that the link is correct (issue with pressing tab)
 
                 if(url.equals("https://prodweb2.wit.edu/SSBPROD/twbkwbis.P_GenMenu?name=bmenu.P_MainMnu")) {
                     //If the main menu has loaded, follow the "Student and Financial Aid" Link
@@ -114,6 +113,13 @@ public class WebDummy extends AppCompatActivity {
 
                     //Click the next link involved with to scraping pages
                     clickLink();
+                } else if(url.equals("https://cas.wit.edu/cas/login?service=https%3A%2F%2Fprodweb2.wit.edu%3A443%2Fssomanager%2Fc%2FSSB")){
+                    //do nothing, let user interact with this page
+
+                } else {
+
+                    //if any other page is loaded, bring user back to login screen to prevent user from getting stuck
+                    webview.loadUrl("https://cas.wit.edu/cas/login?service=https%3A%2F%2Fprodweb2.wit.edu%3A443%2Fssomanager%2Fc%2FSSB");
                 }
             }
         });
