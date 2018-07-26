@@ -193,7 +193,7 @@ public class PortraitSchedule extends AppCompatActivity {
                 //id = the index of the class in the list
                 cbtn.setId(i);
                 cbtn.setTag(meetingTimes.get(i));
-                cbtn.setText(meetingTimes.get(i).courseNumber);
+                cbtn.setText(courses.get(meetingTimes.get(i).courseNumber).courseName);
                 cbtn.setBackgroundColor(getResources().getColor(R.color.ivory));
                 //original times are in the format of 1-2 numbers for hour, then a colon, then 2 numbers for minutes, a space, then am/pm
                 startTime = meetingTimes.get(i).startTime;
