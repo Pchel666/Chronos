@@ -84,12 +84,12 @@ public class LandscapeSchedule extends AppCompatActivity {
         }
     }
 
-    public static int convertPixToDp(int pix){
+    public static int convertDpToPix(int dp){
         //converts pixels to density-independent pixels (dp)
         //TODO: fix the formula
         DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
-        float dp = pix / (metrics.densityDpi / 160f);
-        return Math.round(dp);
+        float pix = dp * (metrics.densityDpi / 160f);
+        return Math.round(pix);
     }
 
     private void fillSchedule(){
@@ -114,26 +114,26 @@ public class LandscapeSchedule extends AppCompatActivity {
             //converting start and end times to top margin and height respectively
             if (startTime.split(" ")[1].equals("am")){
                 startMargin = (Integer.parseInt(startTime.split(":")[0])-7)*60 + Integer.parseInt(startTime.split(":")[1].split(" ")[0]);
-                startMargin = convertPixToDp(startMargin);
+                startMargin = convertDpToPix(startMargin);
             }else{
                 if(startTime.split(":")[0].equals("12")){
                     startMargin = 300;
-                    startMargin = convertPixToDp(startMargin);
+                    startMargin = convertDpToPix(startMargin);
                 }else{
                     startMargin = (Integer.parseInt(startTime.split(":")[0]) - 1) * 60 + Integer.parseInt(startTime.split(":")[1].split(" ")[0]) + 360;
-                    startMargin = convertPixToDp(startMargin);
+                    startMargin = convertDpToPix(startMargin);
                 }
             }
             if (endTime.split(" ")[1].equals("am")){
                 heightOfBtn = (Integer.parseInt(endTime.split(":")[0])-7)*60 + Integer.parseInt(endTime.split(":")[1].split(" ")[0]) - startMargin;
-                heightOfBtn = convertPixToDp(heightOfBtn);
+                heightOfBtn = convertDpToPix(heightOfBtn);
             }else{
                 if(endTime.split(":")[0].equals("12")){
                     heightOfBtn = 300 - startMargin;
-                    heightOfBtn = convertPixToDp(heightOfBtn);
+                    heightOfBtn = convertDpToPix(heightOfBtn);
                 }else{
                     heightOfBtn = (Integer.parseInt(endTime.split(":")[0]) - 1) * 60 + Integer.parseInt(endTime.split(":")[1].split(" ")[0]) + 360 - startMargin;
-                    heightOfBtn = convertPixToDp(heightOfBtn);
+                    heightOfBtn = convertDpToPix(heightOfBtn);
                 }
             }
             RelativeLayout.LayoutParams layParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, heightOfBtn);
