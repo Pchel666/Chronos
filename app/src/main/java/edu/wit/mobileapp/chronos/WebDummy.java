@@ -76,7 +76,7 @@ public class WebDummy extends AppCompatActivity {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-
+                //TODO: make sure that the link is correct (issue with pressing tab)
 
                 if(url.equals("https://prodweb2.wit.edu/SSBPROD/twbkwbis.P_GenMenu?name=bmenu.P_MainMnu")) {
                     //If the main menu has loaded, follow the "Student and Financial Aid" Link
