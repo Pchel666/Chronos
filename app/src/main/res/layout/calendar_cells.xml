@@ -116,4 +116,11 @@
         android:background="@color/darkGray"
         android:layout_marginTop="900dp">
     </View>
+    <!-- This is a column divider -->
+    <View
+        android:layout_width="1dp"
+        android:layout_height="fill_parent"
+        android:background="@color/darkGray"
+        android:layout_alignParentRight="true">
+    </View>
 </RelativeLayout>

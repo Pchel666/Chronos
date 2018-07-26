@@ -349,7 +349,6 @@
                     android:layout_weight="2" >
 
                     <include layout="@layout/calendar_cells" />
-
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -359,7 +358,6 @@
                     android:layout_weight="2" >
 
                     <include layout="@layout/calendar_cells" />
-
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -369,7 +367,6 @@
                     android:layout_weight="2" >
 
                     <include layout="@layout/calendar_cells" />
-
                 </RelativeLayout>
             </LinearLayout>
         </RelativeLayout>
