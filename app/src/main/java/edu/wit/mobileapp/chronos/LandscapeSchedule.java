@@ -87,8 +87,8 @@ public class LandscapeSchedule extends AppCompatActivity {
         RelativeLayout currentLayout = new RelativeLayout(this);
         String startTime = "";
         String endTime = "";
-        int topMargin = 0;
-        int bottomMargin = 0;
+        int startMargin = 0;
+        int heightOfBtn = 0;
         //goes through the meetingTimes list to create a button for each class
         for(int i = 0; i < meetingTimes.size(); i++){
             //button representing the current class in the list
@@ -98,28 +98,28 @@ public class LandscapeSchedule extends AppCompatActivity {
             cbtn.setTag(meetingTimes.get(i));
             cbtn.setText(courses.get(meetingTimes.get(i).courseNumber).courseName);
             cbtn.setBackgroundColor(getResources().getColor(R.color.ivory));
-            RelativeLayout.LayoutParams layParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
             //original times are in the format of 1-2 numbers for hour, then a colon, then 2 numbers for minutes, a space, then am/pm
             startTime = meetingTimes.get(i).startTime;
             endTime = meetingTimes.get(i).endTime;
-            //converting start and end times to margins in the layout
+            //converting start and end times to top margin and height respectively
             if (startTime.split(" ")[1].equals("am")){
-                topMargin = (Integer.parseInt(startTime.split(":")[0])-7)*60 + Integer.parseInt(startTime.split(":")[1].split(" ")[0]);
+                startMargin = (Integer.parseInt(startTime.split(":")[0])-7)*60 + Integer.parseInt(startTime.split(":")[1].split(" ")[0]);
             }else{
                 if(startTime.split(":")[0].equals("12")){
-                    topMargin = 300;
+                    startMargin = 300;
                 }
-                topMargin = (Integer.parseInt(startTime.split(":")[0])-1)*60 + Integer.parseInt(startTime.split(":")[1].split(" ")[0]) + 360;
+                startMargin = (Integer.parseInt(startTime.split(":")[0])-1)*60 + Integer.parseInt(startTime.split(":")[1].split(" ")[0]) + 360;
             }
             if (endTime.split(" ")[1].equals("am")){
-                bottomMargin = (Integer.parseInt(endTime.split(":")[0])-7)*60 + Integer.parseInt(endTime.split(":")[1].split(" ")[0]);
+                heightOfBtn = (Integer.parseInt(endTime.split(":")[0])-7)*60 + Integer.parseInt(endTime.split(":")[1].split(" ")[0]) - startMargin;
             }else{
                 if(endTime.split(":")[0].equals("12")){
-                    bottomMargin = 300;
+                    heightOfBtn = 300 - startMargin;
                 }
-                bottomMargin = (Integer.parseInt(endTime.split(":")[0])-1)*60 + Integer.parseInt(endTime.split(":")[1].split(" ")[0]) + 360;
+                heightOfBtn = (Integer.parseInt(endTime.split(":")[0])-1)*60 + Integer.parseInt(endTime.split(":")[1].split(" ")[0]) + 360 - startMargin;
             }
-            layParams.setMargins(0,topMargin,0,bottomMargin);
+            RelativeLayout.LayoutParams layParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, heightOfBtn);
+            layParams.setMargins(0,startMargin,0,0);
             cbtn.setLayoutParams(layParams);
             char currentDay = meetingTimes.get(i).day;
             switch (currentDay){
