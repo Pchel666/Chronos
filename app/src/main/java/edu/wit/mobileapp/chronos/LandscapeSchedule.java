@@ -50,14 +50,19 @@ public class LandscapeSchedule extends AppCompatActivity {
         editor = saved.edit();
 
         //Try loading existing JSON data from device, and unwrapping it back into the respective List/Map
-        if(saved.contains("coursesJSON")){
-            String existingCourses = saved.getString("coursesJSON","");
-            courses = gson.fromJson(existingCourses, courses.getClass());
+        if(saved.contains("numCourses")){
+            for(int i = 0; i<saved.getInt("numCourses", 0); i++ ){
+                String existingCourse = saved.getString("course"+i+"", "");
+                Course courseToAdd = gson.fromJson(existingCourse, Course.class);
+                courses.put(courseToAdd.courseNumber, courseToAdd);
+            }
         }
-        if(saved.contains("meetingTimesJSON")){
-            String existingMeetingTimes = saved.getString("meetingTimesJSON", "");
-            meetingTimes = gson.fromJson(existingMeetingTimes, meetingTimes.getClass());
-
+        if(saved.contains("numLectures")){
+            for(int i = 0; i<saved.getInt("numLectures", 0); i++ ){
+                String existingCourse = saved.getString("lecture"+i+"", "");
+                Lecture timeToAdd = gson.fromJson(existingCourse, Lecture.class);
+                meetingTimes.add(timeToAdd);
+            }
         }
 
         fillSchedule();

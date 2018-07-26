@@ -248,8 +248,8 @@ public class WebDummy extends AppCompatActivity {
                     // Matches courseTitle and courseNumber
                     Matcher titleMatcher = titlePattern.matcher(aContent);
                     if (titleMatcher.find() && titleMatcher.groupCount() == 3) {
-                        courseName = titleMatcher.group(1);
-                        courseNumber = titleMatcher.group(2);
+                        courseName = titleMatcher.group(1).trim();
+                        courseNumber = titleMatcher.group(2).trim();
                     }
 
                     // Matches Meeting Time Details
