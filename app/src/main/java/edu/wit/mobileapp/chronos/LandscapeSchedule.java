@@ -92,6 +92,7 @@ public class LandscapeSchedule extends AppCompatActivity {
     }
 
     private void fillSchedule(){
+        //TODO: fix the height of each class' button
         //uses courses and meeting times to fill the schedule interface
         RelativeLayout currentLayout = new RelativeLayout(this);
         String startTime;
