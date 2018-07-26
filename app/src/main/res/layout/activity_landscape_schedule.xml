@@ -157,82 +157,6 @@
                     android:padding="0dp" >
 
                     <include layout="@layout/calendar_cells" />
-                    <TextView
-                        android:id="@+id/time12amTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="6dp"
-                        android:layout_marginTop="0dp"
-                        android:gravity="center"
-                        android:text="@string/am12"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/time1amTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="6dp"
-                        android:layout_marginTop="60dp"
-                        android:gravity="center"
-                        android:text="@string/am1"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/time2amTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="6dp"
-                        android:layout_marginTop="120dp"
-                        android:gravity="center"
-                        android:text="@string/am2"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/time3amTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="6dp"
-                        android:layout_marginTop="180dp"
-                        android:gravity="center"
-                        android:text="@string/am3"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/time4amTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="6dp"
-                        android:layout_marginTop="240dp"
-                        android:gravity="center"
-                        android:text="@string/am4"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/time5amTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="6dp"
-                        android:layout_marginTop="300dp"
-                        android:gravity="center"
-                        android:text="@string/am5"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/time6amTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="6dp"
-                        android:layout_marginTop="360dp"
-                        android:gravity="center"
-                        android:text="@string/am6"
-                        android:textSize="15sp" />
 
                     <TextView
                         android:id="@+id/time7amTextView"
@@ -240,7 +164,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="6dp"
-                        android:layout_marginTop="420dp"
+                        android:layout_marginTop="0dp"
                         android:gravity="center"
                         android:text="@string/am7"
                         android:textSize="15sp" />
@@ -251,7 +175,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="6dp"
-                        android:layout_marginTop="480dp"
+                        android:layout_marginTop="60dp"
                         android:gravity="center"
                         android:text="@string/am8"
                         android:textSize="15sp" />
@@ -262,7 +186,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="6dp"
-                        android:layout_marginTop="540dp"
+                        android:layout_marginTop="120dp"
                         android:gravity="center"
                         android:text="@string/am9"
                         android:textSize="15sp" />
@@ -273,7 +197,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="6dp"
-                        android:layout_marginTop="600dp"
+                        android:layout_marginTop="180dp"
                         android:gravity="center"
                         android:text="@string/am10"
                         android:textSize="15sp" />
@@ -284,7 +208,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="6dp"
-                        android:layout_marginTop="660dp"
+                        android:layout_marginTop="240dp"
                         android:gravity="center"
                         android:text="@string/am11"
                         android:textSize="15sp" />
@@ -295,7 +219,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="6dp"
-                        android:layout_marginTop="720dp"
+                        android:layout_marginTop="300dp"
                         android:gravity="center"
                         android:text="@string/pm12"
                         android:textSize="15sp" />
@@ -306,7 +230,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="6dp"
-                        android:layout_marginTop="780dp"
+                        android:layout_marginTop="360dp"
                         android:gravity="center"
                         android:text="@string/pm1"
                         android:textSize="15sp" />
@@ -317,7 +241,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="6dp"
-                        android:layout_marginTop="840dp"
+                        android:layout_marginTop="420dp"
                         android:gravity="center"
                         android:text="@string/pm2"
                         android:textSize="15sp" />
@@ -328,7 +252,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="6dp"
-                        android:layout_marginTop="900dp"
+                        android:layout_marginTop="480dp"
                         android:gravity="center"
                         android:text="@string/pm3"
                         android:textSize="15sp" />
@@ -339,7 +263,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="6dp"
-                        android:layout_marginTop="960dp"
+                        android:layout_marginTop="540dp"
                         android:gravity="center"
                         android:text="@string/pm4"
                         android:textSize="15sp" />
@@ -350,7 +274,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="6dp"
-                        android:layout_marginTop="1020dp"
+                        android:layout_marginTop="600dp"
                         android:gravity="center"
                         android:text="@string/pm5"
                         android:textSize="15sp" />
@@ -361,7 +285,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="6dp"
-                        android:layout_marginTop="1080dp"
+                        android:layout_marginTop="660dp"
                         android:gravity="center"
                         android:text="@string/pm6"
                         android:textSize="15sp" />
@@ -372,7 +296,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="6dp"
-                        android:layout_marginTop="1140dp"
+                        android:layout_marginTop="720dp"
                         android:gravity="center"
                         android:text="@string/pm7"
                         android:textSize="15sp" />
@@ -383,7 +307,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="6dp"
-                        android:layout_marginTop="1200dp"
+                        android:layout_marginTop="780dp"
                         android:gravity="center"
                         android:text="@string/pm8"
                         android:textSize="15sp" />
@@ -394,31 +318,9 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="6dp"
-                        android:layout_marginTop="1260dp"
+                        android:layout_marginTop="840dp"
                         android:gravity="center"
                         android:text="@string/pm9"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/time10pmTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="6dp"
-                        android:layout_marginTop="1320dp"
-                        android:gravity="center"
-                        android:text="@string/pm10"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/time11pmTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="60dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="6dp"
-                        android:layout_marginTop="1380dp"
-                        android:gravity="center|top"
-                        android:text="@string/pm11"
                         android:textSize="15sp" />
                 </RelativeLayout>
 

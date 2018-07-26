@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/calendar_cells"
     android:layout_width="fill_parent"
-    android:layout_height="1440dp">
+    android:layout_height="900dp">
     <!-- This is each row in the schedule -->
     <View
         android:id="@+id/hour_divider0"
@@ -115,68 +115,5 @@
         android:layout_height="1dp"
         android:background="@color/darkGray"
         android:layout_marginTop="900dp">
-    </View>
-    <View
-        android:id="@+id/hour_divider16"
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/darkGray"
-        android:layout_marginTop="960dp">
-    </View>
-    <View
-        android:id="@+id/hour_divider17"
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/darkGray"
-        android:layout_marginTop="1020dp">
-    </View>
-    <View
-        android:id="@+id/hour_divider18"
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/darkGray"
-        android:layout_marginTop="1080dp">
-    </View>
-    <View
-        android:id="@+id/hour_divider19"
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/darkGray"
-        android:layout_marginTop="1140dp">
-    </View>
-    <View
-        android:id="@+id/hour_divider20"
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/darkGray"
-        android:layout_marginTop="1200dp">
-    </View>
-    <View
-        android:id="@+id/hour_divider21"
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/darkGray"
-        android:layout_marginTop="1260dp">
-    </View>
-    <View
-        android:id="@+id/hour_divider22"
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/darkGray"
-        android:layout_marginTop="1320dp">
-    </View>
-    <View
-        android:id="@+id/hour_divider23"
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/darkGray"
-        android:layout_marginTop="1380dp">
-    </View>
-    <View
-        android:id="@+id/hour_divider24"
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/darkGray"
-        android:layout_marginTop="1440dp">
     </View>
 </RelativeLayout>

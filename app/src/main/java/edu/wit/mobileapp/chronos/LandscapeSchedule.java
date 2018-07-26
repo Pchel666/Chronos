@@ -79,6 +79,10 @@ public class LandscapeSchedule extends AppCompatActivity {
     private void fillSchedule(){
         //uses courses and meeting times to fill the schedule interface
         RelativeLayout currentLayout = new RelativeLayout(this);
+        String startTime = "";
+        String endTime = "";
+        int topMargin = 0;
+        int bottomMargin = 0;
         //goes through the meetingTimes list to create a button for each class
         for(int i = 0; i < meetingTimes.size(); i++){
             //button representing the current class in the list
@@ -90,7 +94,14 @@ public class LandscapeSchedule extends AppCompatActivity {
             cbtn.setBackgroundColor(getResources().getColor(R.color.ivory));
             RelativeLayout.LayoutParams layParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
             //TODO: make a method to convert time to margins
-
+            //original times are in the format of 1-2 numbers for hour, then a colon, then 2 numbers for minutes, a space, then am/pm
+            startTime = meetingTimes.get(i).startTime;
+            endTime = meetingTimes.get(i).endTime;
+            if (startTime.split(" ")[1] == "am") {
+                topMargin = Integer.parseInt(startTime.split(":")[0])*60 + Integer.parseInt(startTime.split(":")[1].split(" ")[0]);
+            }else{
+                topMargin = Integer.parseInt(startTime.split(":")[0])*60 + Integer.parseInt(startTime.split(":")[1].split(" ")[0]) + ;
+            }
             layParams.setMargins(0,0,0,0);
             cbtn.setLayoutParams(layParams);
             char currentDay = meetingTimes.get(i).day;
