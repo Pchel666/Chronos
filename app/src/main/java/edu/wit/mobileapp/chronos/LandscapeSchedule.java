@@ -86,7 +86,6 @@ public class LandscapeSchedule extends AppCompatActivity {
 
     public static int convertDpToPix(int dp){
         //converts pixels to density-independent pixels (dp)
-        //TODO: fix the formula
         DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
         float pix = dp * (metrics.densityDpi / 160f);
         return Math.round(pix);

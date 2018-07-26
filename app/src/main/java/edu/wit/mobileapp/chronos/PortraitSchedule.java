@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -167,6 +169,12 @@ public class PortraitSchedule extends AppCompatActivity {
         startActivity(goToLogin);
     }
 
+    public static int convertDpToPix(int dp){
+        //converts pixels to density-independent pixels (dp)
+        DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
+        float pix = dp * (metrics.densityDpi / 160f);
+        return Math.round(pix);
+    }
 
     private void fillSchedule(){
         //TODO: fix this method
@@ -174,8 +182,8 @@ public class PortraitSchedule extends AppCompatActivity {
         RelativeLayout currentLayout = new RelativeLayout(this);
         String startTime;
         String endTime;
-        int topMargin;
-        int bottomMargin;
+        int startMargin;
+        int heightOfBtn;
         //goes through the meetingTimes list to create a button for each class
         for(int i = 0; i < meetingTimes.size(); i++){
             //Only Add classes that occur "today", adding duplicate classes causes crash
@@ -188,30 +196,36 @@ public class PortraitSchedule extends AppCompatActivity {
                 cbtn.setTag(meetingTimes.get(i));
                 cbtn.setText(meetingTimes.get(i).courseNumber);
                 cbtn.setBackgroundColor(getResources().getColor(R.color.ivory));
-                RelativeLayout.LayoutParams layParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 //original times are in the format of 1-2 numbers for hour, then a colon, then 2 numbers for minutes, a space, then am/pm
                 startTime = meetingTimes.get(i).startTime;
                 endTime = meetingTimes.get(i).endTime;
-                //converting start and end times to margins in the layout
-                if (startTime.split(" ")[1].equals("am")) {
-                    topMargin = (Integer.parseInt(startTime.split(":")[0]) - 7) * 60 + Integer.parseInt(startTime.split(":")[1].split(" ")[0]);
-                } else {
-                    if (startTime.split(":")[0].equals("12")) {
-                        topMargin = 300;
+                //converting start and end times to top margin and height respectively
+                if (startTime.split(" ")[1].equals("am")){
+                    startMargin = (Integer.parseInt(startTime.split(":")[0])-7)*60 + Integer.parseInt(startTime.split(":")[1].split(" ")[0]);
+                    startMargin = convertDpToPix(startMargin);
+                }else{
+                    if(startTime.split(":")[0].equals("12")){
+                        startMargin = 300;
+                        startMargin = convertDpToPix(startMargin);
                     }else{
-                        topMargin = (Integer.parseInt(startTime.split(":")[0]) - 1) * 60 + Integer.parseInt(startTime.split(":")[1].split(" ")[0]) + 360;
+                        startMargin = (Integer.parseInt(startTime.split(":")[0]) - 1) * 60 + Integer.parseInt(startTime.split(":")[1].split(" ")[0]) + 360;
+                        startMargin = convertDpToPix(startMargin);
                     }
                 }
-                if (endTime.split(" ")[1].equals("am")) {
-                    bottomMargin = (Integer.parseInt(endTime.split(":")[0]) - 7) * 60 + Integer.parseInt(endTime.split(":")[1].split(" ")[0]);
-                } else {
-                    if (endTime.split(":")[0].equals("12")) {
-                        bottomMargin = 300;
+                if (endTime.split(" ")[1].equals("am")){
+                    heightOfBtn = (Integer.parseInt(endTime.split(":")[0])-7)*60 + Integer.parseInt(endTime.split(":")[1].split(" ")[0]) - startMargin;
+                    heightOfBtn = convertDpToPix(heightOfBtn);
+                }else{
+                    if(endTime.split(":")[0].equals("12")){
+                        heightOfBtn = 300 - startMargin;
+                        heightOfBtn = convertDpToPix(heightOfBtn);
                     }else{
-                        bottomMargin = (Integer.parseInt(endTime.split(":")[0]) - 1) * 60 + Integer.parseInt(endTime.split(":")[1].split(" ")[0]) + 360;
+                        heightOfBtn = (Integer.parseInt(endTime.split(":")[0]) - 1) * 60 + Integer.parseInt(endTime.split(":")[1].split(" ")[0]) + 360 - startMargin;
+                        heightOfBtn = convertDpToPix(heightOfBtn);
                     }
                 }
-                layParams.setMargins(0, topMargin, 0, bottomMargin);
+                RelativeLayout.LayoutParams layParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, heightOfBtn);
+                layParams.setMargins(0,startMargin,1,0);
                 cbtn.setLayoutParams(layParams);
                 char currentDay = meetingTimes.get(i).day;
                 switch (currentDay) {
