@@ -84,7 +84,7 @@ public class LandscapeSchedule extends AppCompatActivity {
         }
     }
 
-    public static int convertDpToPix(int dp){
+    public int convertDpToPix(int dp){
         //converts pixels to density-independent pixels (dp)
         DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
         float pix = dp * (metrics.densityDpi / 160f);
@@ -92,7 +92,6 @@ public class LandscapeSchedule extends AppCompatActivity {
     }
 
     private void fillSchedule(){
-        //TODO: fix the height of each class' button
         //uses courses and meeting times to fill the schedule interface
         RelativeLayout currentLayout = new RelativeLayout(this);
         String startTime;
@@ -125,15 +124,15 @@ public class LandscapeSchedule extends AppCompatActivity {
                 }
             }
             if (endTime.split(" ")[1].equals("am")){
-                heightOfBtn = (Integer.parseInt(endTime.split(":")[0])-7)*60 + Integer.parseInt(endTime.split(":")[1].split(" ")[0]) - startMargin;
-                heightOfBtn = convertDpToPix(heightOfBtn);
+                heightOfBtn = (Integer.parseInt(endTime.split(":")[0])-7)*60 + Integer.parseInt(endTime.split(":")[1].split(" ")[0]);
+                heightOfBtn = convertDpToPix(heightOfBtn) - startMargin;
             }else{
                 if(endTime.split(":")[0].equals("12")){
-                    heightOfBtn = 300 - startMargin;
-                    heightOfBtn = convertDpToPix(heightOfBtn);
+                    heightOfBtn = 300;
+                    heightOfBtn = convertDpToPix(heightOfBtn) - startMargin;
                 }else{
-                    heightOfBtn = (Integer.parseInt(endTime.split(":")[0]) - 1) * 60 + Integer.parseInt(endTime.split(":")[1].split(" ")[0]) + 360 - startMargin;
-                    heightOfBtn = convertDpToPix(heightOfBtn);
+                    heightOfBtn = (Integer.parseInt(endTime.split(":")[0]) - 1) * 60 + Integer.parseInt(endTime.split(":")[1].split(" ")[0]) + 360;
+                    heightOfBtn = convertDpToPix(heightOfBtn) - startMargin;
                 }
             }
             RelativeLayout.LayoutParams layParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, heightOfBtn);
