@@ -125,7 +125,7 @@ public class PortraitSchedule extends AppCompatActivity {
                 importData();
             } else {
                 //If the data exists, use it to fill the schedule
-                //fillSchedule();
+                fillSchedule();
             }
         }
     }
@@ -167,59 +167,72 @@ public class PortraitSchedule extends AppCompatActivity {
         int bottomMargin = 0;
         //goes through the meetingTimes list to create a button for each class
         for(int i = 0; i < meetingTimes.size(); i++){
-            //button representing the current class in the list
-            Button cbtn = new Button(this);
-            //id = the index of the class in the list
-            cbtn.setId(i);
-            cbtn.setTag(meetingTimes.get(i).courseNumber);
-            cbtn.setText(meetingTimes.get(i).courseNumber);
-            cbtn.setBackgroundColor(getResources().getColor(R.color.ivory));
-            RelativeLayout.LayoutParams layParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-            //original times are in the format of 1-2 numbers for hour, then a colon, then 2 numbers for minutes, a space, then am/pm
-            startTime = meetingTimes.get(i).startTime;
-            endTime = meetingTimes.get(i).endTime;
-            //converting start and end times to margins in the layout
-            if (startTime.split(" ")[1] == "am"){
-                topMargin = (Integer.parseInt(startTime.split(":")[0])-7)*60 + Integer.parseInt(startTime.split(":")[1].split(" ")[0]);
-            }else{
-                if(startTime.split(":")[0] == "12"){
-                    topMargin = 300;
+            //Only Add classes that occur "today", adding duplicate classes causes crash
+            if(meetingTimes.get(i).day == 'M') {
+                //button representing the current class in the list
+                Button cbtn = new Button(this);
+                //id = the index of the class in the list
+                cbtn.setId(i);
+                cbtn.setTag(meetingTimes.get(i));
+                cbtn.setText(meetingTimes.get(i).courseNumber);
+                cbtn.setBackgroundColor(getResources().getColor(R.color.ivory));
+                RelativeLayout.LayoutParams layParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                //original times are in the format of 1-2 numbers for hour, then a colon, then 2 numbers for minutes, a space, then am/pm
+                startTime = meetingTimes.get(i).startTime;
+                endTime = meetingTimes.get(i).endTime;
+                //converting start and end times to margins in the layout
+                if (startTime.split(" ")[1].equals("am")) {
+                    topMargin = (Integer.parseInt(startTime.split(":")[0]) - 7) * 60 + Integer.parseInt(startTime.split(":")[1].split(" ")[0]);
+                } else {
+                    if (startTime.split(":")[0].equals("12")) {
+                        topMargin = 300;
+                    }
+                    topMargin = (Integer.parseInt(startTime.split(":")[0]) - 1) * 60 + Integer.parseInt(startTime.split(":")[1].split(" ")[0]) + 360;
                 }
-                topMargin = (Integer.parseInt(startTime.split(":")[0])-1)*60 + Integer.parseInt(startTime.split(":")[1].split(" ")[0]) + 360;
-            }
-            if (endTime.split(" ")[1] == "am"){
-                bottomMargin = (Integer.parseInt(endTime.split(":")[0])-7)*60 + Integer.parseInt(endTime.split(":")[1].split(" ")[0]);
-            }else{
-                if(endTime.split(":")[0] == "12"){
-                    bottomMargin = 300;
+                if (endTime.split(" ")[1].equals("am")) {
+                    bottomMargin = (Integer.parseInt(endTime.split(":")[0]) - 7) * 60 + Integer.parseInt(endTime.split(":")[1].split(" ")[0]);
+                } else {
+                    if (endTime.split(":")[0].equals("12")) {
+                        bottomMargin = 300;
+                    }
+                    bottomMargin = (Integer.parseInt(endTime.split(":")[0]) - 1) * 60 + Integer.parseInt(endTime.split(":")[1].split(" ")[0]) + 360;
                 }
-                bottomMargin = (Integer.parseInt(endTime.split(":")[0])-1)*60 + Integer.parseInt(endTime.split(":")[1].split(" ")[0]) + 360;
-            }
-            layParams.setMargins(0,topMargin,0,bottomMargin);
-            cbtn.setLayoutParams(layParams);
-            char currentDay = meetingTimes.get(i).day;
-            switch (currentDay){
-                case 'M':   currentLayout = (RelativeLayout)findViewById(R.id.mondayRelativeLayout);
-                            break;
-                case 'T':   currentLayout = (RelativeLayout)findViewById(R.id.tuesdayRelativeLayout);
-                            break;
-                case 'W':   currentLayout = (RelativeLayout)findViewById(R.id.wednesdayRelativeLayout);
-                            break;
-                case 'R':   currentLayout = (RelativeLayout)findViewById(R.id.thursdayRelativeLayout);
-                            break;
-                case 'F':   currentLayout = (RelativeLayout)findViewById(R.id.fridayRelativeLayout);
-                            break;
-            }
-            currentLayout.addView(cbtn);
-            cbtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v){
-                    //TODO: make onClick listener
-                    //String key = meetingTimes.get(i).courseNumber;
-                    //String courseName = courses.get(key).name;
-                    //rest of courses data and bundle to send to fragment...
+                layParams.setMargins(0, topMargin, 0, bottomMargin);
+                cbtn.setLayoutParams(layParams);
+                char currentDay = meetingTimes.get(i).day;
+                switch (currentDay) {
+                    case 'M':
+                        currentLayout = (RelativeLayout) findViewById(R.id.mondayRelativeLayout);
+                        break;
+                    case 'T':
+                        currentLayout = (RelativeLayout) findViewById(R.id.tuesdayRelativeLayout);
+                        break;
+                    case 'W':
+                        currentLayout = (RelativeLayout) findViewById(R.id.wednesdayRelativeLayout);
+                        break;
+                    case 'R':
+                        currentLayout = (RelativeLayout) findViewById(R.id.thursdayRelativeLayout);
+                        break;
+                    case 'F':
+                        currentLayout = (RelativeLayout) findViewById(R.id.fridayRelativeLayout);
+                        break;
                 }
-            });
+                currentLayout.addView(cbtn);
+                cbtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //TODO: make onClick listener
+                        Lecture thisTime = (Lecture) v.getTag();
+                        String key = thisTime.courseNumber;
+                        String courseName = courses.get(key).courseName;
+                        String place = thisTime.place;
+                        String instructor = courses.get(key).instructor;
+
+                        String breakpoint = ("Break to check data");
+                        //rest of courses data and bundle to send to fragment...
+                    }
+                });
+            }
         }
         // break point to check data
         System.out.print("break");

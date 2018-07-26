@@ -95,26 +95,26 @@ public class LandscapeSchedule extends AppCompatActivity {
             Button cbtn = new Button(this);
             //id = the index of the class in the list
             cbtn.setId(i);
-            cbtn.setTag(meetingTimes.get(i).courseNumber);
-            cbtn.setText(meetingTimes.get(i).courseNumber);
+            cbtn.setTag(meetingTimes.get(i));
+            cbtn.setText(courses.get(meetingTimes.get(i).courseNumber).courseName);
             cbtn.setBackgroundColor(getResources().getColor(R.color.ivory));
             RelativeLayout.LayoutParams layParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
             //original times are in the format of 1-2 numbers for hour, then a colon, then 2 numbers for minutes, a space, then am/pm
             startTime = meetingTimes.get(i).startTime;
             endTime = meetingTimes.get(i).endTime;
             //converting start and end times to margins in the layout
-            if (startTime.split(" ")[1] == "am"){
+            if (startTime.split(" ")[1].equals("am")){
                 topMargin = (Integer.parseInt(startTime.split(":")[0])-7)*60 + Integer.parseInt(startTime.split(":")[1].split(" ")[0]);
             }else{
-                if(startTime.split(":")[0] == "12"){
+                if(startTime.split(":")[0].equals("12")){
                     topMargin = 300;
                 }
                 topMargin = (Integer.parseInt(startTime.split(":")[0])-1)*60 + Integer.parseInt(startTime.split(":")[1].split(" ")[0]) + 360;
             }
-            if (endTime.split(" ")[1] == "am"){
+            if (endTime.split(" ")[1].equals("am")){
                 bottomMargin = (Integer.parseInt(endTime.split(":")[0])-7)*60 + Integer.parseInt(endTime.split(":")[1].split(" ")[0]);
             }else{
-                if(endTime.split(":")[0] == "12"){
+                if(endTime.split(":")[0].equals("12")){
                     bottomMargin = 300;
                 }
                 bottomMargin = (Integer.parseInt(endTime.split(":")[0])-1)*60 + Integer.parseInt(endTime.split(":")[1].split(" ")[0]) + 360;
@@ -139,9 +139,14 @@ public class LandscapeSchedule extends AppCompatActivity {
                 @Override
                 public void onClick(View v){
                     //TODO: make onClick listener
-                    //String key = meetingTimes.get(i).courseNumber;
-                    //String courseName = courses.get(key).name;
-                    //rest of courses data and bundle to send to fragment...
+                    Lecture thisTime = (Lecture) v.getTag();
+                    String key = thisTime.courseNumber;
+                    String courseName = courses.get(key).courseName;
+                    String place = thisTime.place;
+                    String instructor = courses.get(key).instructor;
+
+                    String breakpoint = ("Break to check data");
+
                 }
             });
         }
