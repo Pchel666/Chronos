@@ -39,6 +39,16 @@ public class PortraitSchedule extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_portrait_schedule);
 
+        //TODO: This button is fully functinoal, just need to make it look good in UI
+        Button resetBTN = findViewById(R.id.resetBTN);
+        resetBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //make user log in again to reload data when reset
+                importData();
+            }
+        });
+
         //Initilizes gson, savedPreferences and savedPreferences.Editor
         //Used for storing data to the device for future runs of application
         Gson gson = new Gson();
@@ -99,7 +109,7 @@ public class PortraitSchedule extends AppCompatActivity {
             editor.commit();
 
             //Fill the schedule with this parsed data
-            //fillSchedule();
+            fillSchedule();
 
         } else {
 
@@ -169,6 +179,7 @@ public class PortraitSchedule extends AppCompatActivity {
         //goes through the meetingTimes list to create a button for each class
         for(int i = 0; i < meetingTimes.size(); i++){
             //Only Add classes that occur "today", adding duplicate classes causes crash
+            //TODO: Enusre only current day is loaded into schedule: replace 'M' below with current day char
             if(meetingTimes.get(i).day == 'M') {
                 //button representing the current class in the list
                 Button cbtn = new Button(this);
