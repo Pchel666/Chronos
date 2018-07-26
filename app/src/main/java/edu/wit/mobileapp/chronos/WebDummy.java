@@ -1,20 +1,15 @@
 package edu.wit.mobileapp.chronos;
 
-import android.content.Context;
+
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
+
 import android.webkit.CookieManager;
 import android.webkit.JavascriptInterface;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -49,7 +44,6 @@ public class WebDummy extends AppCompatActivity {
         webview = (WebView)findViewById(R.id.webView1);
         webview.setWebViewClient(new WebViewClient());
 
-        loading = findViewById(R.id.loadingImg);
         loadingTV = findViewById(R.id.loadingTextView);
 
 
@@ -288,8 +282,8 @@ public class WebDummy extends AppCompatActivity {
                         lectureToAdd.courseNumber = courseNumber;
                         lectureToAdd.day = details.get(9).charAt(i);
                         //time is in the format of 1-2 numbers for hour, then a colon, then 2 numbers for minutes, a space, then am/pm
-                        lectureToAdd.startTime = details.get(8).split("-")[0];
-                        lectureToAdd.endTime = details.get(8).split("-")[1];
+                        lectureToAdd.startTime = details.get(8).split("-")[0].trim();
+                        lectureToAdd.endTime = details.get(8).split("-")[1].trim();
                         lectureToAdd.place = details.get(10);
                         courseToAdd.addLecture(lectureToAdd);
 
