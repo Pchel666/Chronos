@@ -85,10 +85,10 @@ public class LandscapeSchedule extends AppCompatActivity {
     private void fillSchedule(){
         //uses courses and meeting times to fill the schedule interface
         RelativeLayout currentLayout = new RelativeLayout(this);
-        String startTime = "";
-        String endTime = "";
-        int startMargin = 0;
-        int heightOfBtn = 0;
+        String startTime;
+        String endTime;
+        int startMargin;
+        int heightOfBtn;
         //goes through the meetingTimes list to create a button for each class
         for(int i = 0; i < meetingTimes.size(); i++){
             //button representing the current class in the list
@@ -107,32 +107,39 @@ public class LandscapeSchedule extends AppCompatActivity {
             }else{
                 if(startTime.split(":")[0].equals("12")){
                     startMargin = 300;
+                }else{
+                    startMargin = (Integer.parseInt(startTime.split(":")[0]) - 1) * 60 + Integer.parseInt(startTime.split(":")[1].split(" ")[0]) + 360;
                 }
-                startMargin = (Integer.parseInt(startTime.split(":")[0])-1)*60 + Integer.parseInt(startTime.split(":")[1].split(" ")[0]) + 360;
             }
             if (endTime.split(" ")[1].equals("am")){
                 heightOfBtn = (Integer.parseInt(endTime.split(":")[0])-7)*60 + Integer.parseInt(endTime.split(":")[1].split(" ")[0]) - startMargin;
             }else{
                 if(endTime.split(":")[0].equals("12")){
                     heightOfBtn = 300 - startMargin;
+                }else{
+                    heightOfBtn = (Integer.parseInt(endTime.split(":")[0]) - 1) * 60 + Integer.parseInt(endTime.split(":")[1].split(" ")[0]) + 360 - startMargin;
                 }
-                heightOfBtn = (Integer.parseInt(endTime.split(":")[0])-1)*60 + Integer.parseInt(endTime.split(":")[1].split(" ")[0]) + 360 - startMargin;
             }
             RelativeLayout.LayoutParams layParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, heightOfBtn);
             layParams.setMargins(0,startMargin,0,0);
             cbtn.setLayoutParams(layParams);
             char currentDay = meetingTimes.get(i).day;
             switch (currentDay){
-                case 'M':   currentLayout = (RelativeLayout)findViewById(R.id.mondayRelativeLayout);
-                            break;
-                case 'T':   currentLayout = (RelativeLayout)findViewById(R.id.tuesdayRelativeLayout);
-                            break;
-                case 'W':   currentLayout = (RelativeLayout)findViewById(R.id.wednesdayRelativeLayout);
-                            break;
-                case 'R':   currentLayout = (RelativeLayout)findViewById(R.id.thursdayRelativeLayout);
-                            break;
-                case 'F':   currentLayout = (RelativeLayout)findViewById(R.id.fridayRelativeLayout);
-                            break;
+                case 'M':
+                    currentLayout = (RelativeLayout)findViewById(R.id.mondayRelativeLayout);
+                    break;
+                case 'T':
+                    currentLayout = (RelativeLayout)findViewById(R.id.tuesdayRelativeLayout);
+                    break;
+                case 'W':
+                    currentLayout = (RelativeLayout)findViewById(R.id.wednesdayRelativeLayout);
+                    break;
+                case 'R':
+                    currentLayout = (RelativeLayout)findViewById(R.id.thursdayRelativeLayout);
+                    break;
+                case 'F':
+                    currentLayout = (RelativeLayout)findViewById(R.id.fridayRelativeLayout);
+                    break;
             }
             currentLayout.addView(cbtn);
             cbtn.setOnClickListener(new View.OnClickListener() {

@@ -159,12 +159,13 @@ public class PortraitSchedule extends AppCompatActivity {
 
 
     private void fillSchedule(){
+        //TODO: fix this method
         //uses courses and meeting times to fill the schedule interface
         RelativeLayout currentLayout = new RelativeLayout(this);
-        String startTime = "";
-        String endTime = "";
-        int topMargin = 0;
-        int bottomMargin = 0;
+        String startTime;
+        String endTime;
+        int topMargin;
+        int bottomMargin;
         //goes through the meetingTimes list to create a button for each class
         for(int i = 0; i < meetingTimes.size(); i++){
             //Only Add classes that occur "today", adding duplicate classes causes crash
@@ -186,16 +187,18 @@ public class PortraitSchedule extends AppCompatActivity {
                 } else {
                     if (startTime.split(":")[0].equals("12")) {
                         topMargin = 300;
+                    }else{
+                        topMargin = (Integer.parseInt(startTime.split(":")[0]) - 1) * 60 + Integer.parseInt(startTime.split(":")[1].split(" ")[0]) + 360;
                     }
-                    topMargin = (Integer.parseInt(startTime.split(":")[0]) - 1) * 60 + Integer.parseInt(startTime.split(":")[1].split(" ")[0]) + 360;
                 }
                 if (endTime.split(" ")[1].equals("am")) {
                     bottomMargin = (Integer.parseInt(endTime.split(":")[0]) - 7) * 60 + Integer.parseInt(endTime.split(":")[1].split(" ")[0]);
                 } else {
                     if (endTime.split(":")[0].equals("12")) {
                         bottomMargin = 300;
+                    }else{
+                        bottomMargin = (Integer.parseInt(endTime.split(":")[0]) - 1) * 60 + Integer.parseInt(endTime.split(":")[1].split(" ")[0]) + 360;
                     }
-                    bottomMargin = (Integer.parseInt(endTime.split(":")[0]) - 1) * 60 + Integer.parseInt(endTime.split(":")[1].split(" ")[0]) + 360;
                 }
                 layParams.setMargins(0, topMargin, 0, bottomMargin);
                 cbtn.setLayoutParams(layParams);
