@@ -287,6 +287,7 @@ public class WebDummy extends AppCompatActivity {
                         Lecture lectureToAdd = new Lecture();
                         lectureToAdd.courseNumber = courseNumber;
                         lectureToAdd.day = details.get(9).charAt(i);
+                        //time is in the format of 1-2 numbers for hour, then a colon, then 2 numbers for minutes, a space, then am/pm
                         lectureToAdd.startTime = details.get(8).split("-")[0];
                         lectureToAdd.endTime = details.get(8).split("-")[1];
                         lectureToAdd.place = details.get(10);
