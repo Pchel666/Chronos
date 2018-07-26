@@ -77,16 +77,20 @@ public class LandscapeSchedule extends AppCompatActivity {
     }
 
     private void fillSchedule(){
-        //TODO: uses courses and meeting times to fill the schedule interface
+        //uses courses and meeting times to fill the schedule interface
         RelativeLayout currentLayout = new RelativeLayout(this);
+        //goes through the meetingTimes list to create a button for each class
         for(int i = 0; i < meetingTimes.size(); i++){
+            //button representing the current class in the list
             Button cbtn = new Button(this);
+            //id = the index of the class in the list
             cbtn.setId(i);
             cbtn.setTag(meetingTimes.get(i).courseNumber);
             cbtn.setText(meetingTimes.get(i).courseNumber);
             cbtn.setBackgroundColor(getResources().getColor(R.color.ivory));
             RelativeLayout.LayoutParams layParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
             //TODO: make a method to convert time to margins
+
             layParams.setMargins(0,0,0,0);
             cbtn.setLayoutParams(layParams);
             char currentDay = meetingTimes.get(i).day;
