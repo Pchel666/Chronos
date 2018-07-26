@@ -119,15 +119,15 @@ public class LandscapeSchedule extends AppCompatActivity {
             char currentDay = meetingTimes.get(i).day;
             switch (currentDay){
                 case 'M':   currentLayout = (RelativeLayout)findViewById(R.id.mondayRelativeLayout);
-                    break;
+                            break;
                 case 'T':   currentLayout = (RelativeLayout)findViewById(R.id.tuesdayRelativeLayout);
-                    break;
+                            break;
                 case 'W':   currentLayout = (RelativeLayout)findViewById(R.id.wednesdayRelativeLayout);
-                    break;
+                            break;
                 case 'R':   currentLayout = (RelativeLayout)findViewById(R.id.thursdayRelativeLayout);
-                    break;
+                            break;
                 case 'F':   currentLayout = (RelativeLayout)findViewById(R.id.fridayRelativeLayout);
-                    break;
+                            break;
             }
             currentLayout.addView(cbtn);
             cbtn.setOnClickListener(new View.OnClickListener() {
