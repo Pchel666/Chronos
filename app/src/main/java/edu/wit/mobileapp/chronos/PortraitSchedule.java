@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -20,6 +23,12 @@ import java.util.List;
 import java.util.Map;
 
 public class PortraitSchedule extends AppCompatActivity {
+
+    //fields to be used by the details fragment
+    String clickedClassName;
+    String clickedClassNumber;
+    String clickedClassInstructor;
+    //
     Map<String,Course> courses;
     List<Lecture> meetingTimes;
     int numCourses;
@@ -244,21 +253,23 @@ public class PortraitSchedule extends AppCompatActivity {
                         currentLayout = (RelativeLayout) findViewById(R.id.fridayRelativeLayout);
                         break;
                 }
-                currentLayout.addView(cbtn);
+                final int currentCount = i;
                 cbtn.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v) {
-                        //TODO: make onClick listener
-                        Lecture thisTime = (Lecture) v.getTag();
-                        String key = thisTime.courseNumber;
-                        String courseName = courses.get(key).courseName;
-                        String place = thisTime.place;
-                        String instructor = courses.get(key).instructor;
-
-                        String breakpoint = ("Break to check data");
-                        //rest of courses data and bundle to send to fragment...
+                    public void onClick(View v){
+                        //setting fields to be used by the fragment
+                        clickedClassName = courses.get(meetingTimes.get(currentCount).courseNumber).courseName;
+                        clickedClassNumber = courses.get(meetingTimes.get(currentCount).courseNumber).courseNumber;
+                        clickedClassInstructor = courses.get(meetingTimes.get(currentCount).courseNumber).instructor;
+                        //opening the fragment
+                        FragmentManager fm = getSupportFragmentManager();
+                        FragmentTransaction transaction = fm.beginTransaction();
+                        Fragment fragment1 = new CourseDetails();
+                        transaction.replace(R.id.container, fragment1);
+                        transaction.commit();
                     }
                 });
+                currentLayout.addView(cbtn);
             }
         }
         // break point to check data

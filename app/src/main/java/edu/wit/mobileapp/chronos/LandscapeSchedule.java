@@ -28,7 +28,6 @@ public class LandscapeSchedule extends AppCompatActivity {
     String clickedClassName;
     String clickedClassNumber;
     String clickedClassInstructor;
-    int clickedClass;
     //
     Map<String,Course> courses;
     List<Lecture> meetingTimes;
