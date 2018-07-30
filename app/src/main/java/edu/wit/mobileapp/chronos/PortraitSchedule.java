@@ -199,31 +199,31 @@ public class PortraitSchedule extends AppCompatActivity {
         int dayI = calendar.get(Calendar.DAY_OF_WEEK);
         char dayC = 'M';
         TextView curDayTextView = (TextView)findViewById(R.id.TextViewForDay);
-        curDayTextView.setText("Monday");
+        curDayTextView.setText(getResources().getString(R.string.monday));
         switch(dayI){
             case Calendar.MONDAY:
                 dayC = 'M';
-                curDayTextView.setText("Monday");
+                curDayTextView.setText(getResources().getString(R.string.monday));
                 break;
             case Calendar.TUESDAY:
                 dayC = 'T';
-                curDayTextView.setText("Tuesday");
+                curDayTextView.setText(getResources().getString(R.string.tuesday));
                 break;
             case Calendar.WEDNESDAY:
                 dayC = 'W';
-                curDayTextView.setText("Wednesday");
+                curDayTextView.setText(getResources().getString(R.string.wednesday));
                 break;
             case Calendar.THURSDAY:
                 dayC = 'R';
-                curDayTextView.setText("Thursday");
+                curDayTextView.setText(getResources().getString(R.string.thursday));
                 break;
             case Calendar.FRIDAY:
                 dayC = 'F';
-                curDayTextView.setText("Friday");
+                curDayTextView.setText(getResources().getString(R.string.friday));
                 break;
             default:
                 dayC = 'M';
-                curDayTextView.setText("Monday");
+                curDayTextView.setText(getResources().getString(R.string.monday));
                 break;
         }
         //goes through the meetingTimes list to create a button for each class
