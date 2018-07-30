@@ -28,6 +28,8 @@ public class LandscapeSchedule extends AppCompatActivity {
     String clickedClassName;
     String clickedClassNumber;
     String clickedClassInstructor;
+    String clickedClassLocation;
+
     //
     Map<String,Course> courses;
     List<Lecture> meetingTimes;
@@ -170,12 +172,21 @@ public class LandscapeSchedule extends AppCompatActivity {
                     clickedClassName = courses.get(meetingTimes.get(currentCount).courseNumber).courseName;
                     clickedClassNumber = courses.get(meetingTimes.get(currentCount).courseNumber).courseNumber;
                     clickedClassInstructor = courses.get(meetingTimes.get(currentCount).courseNumber).instructor;
+                    clickedClassLocation = meetingTimes.get(currentCount).place;
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString("courseName", clickedClassName);
+                    bundle.putString("courseNumber", clickedClassNumber);
+                    bundle.putString("instructor", clickedClassInstructor);
+                    bundle.putString("place", clickedClassLocation);
                     //opening the fragment
                     FragmentManager fm = getSupportFragmentManager();
                     FragmentTransaction transaction = fm.beginTransaction();
                     Fragment fragment1 = new CourseDetails();
-                    transaction.replace(R.id.container, fragment1);
+                    fragment1.setArguments(bundle);
+                    transaction.replace(R.id.detailsContainerLandscape, fragment1);
                     transaction.commit();
+                    transaction.addToBackStack(null);
                 }
             });
             currentLayout.addView(cbtn);
