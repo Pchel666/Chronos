@@ -14,10 +14,12 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -193,11 +195,41 @@ public class PortraitSchedule extends AppCompatActivity {
         String endTime;
         int startMargin;
         int heightOfBtn;
+        Calendar calendar = Calendar.getInstance();
+        int dayI = calendar.get(Calendar.DAY_OF_WEEK);
+        char dayC = 'M';
+        TextView curDayTextView = (TextView)findViewById(R.id.TextViewForDay);
+        curDayTextView.setText("Monday");
+        switch(dayI){
+            case Calendar.MONDAY:
+                dayC = 'M';
+                curDayTextView.setText("Monday");
+                break;
+            case Calendar.TUESDAY:
+                dayC = 'T';
+                curDayTextView.setText("Tuesday");
+                break;
+            case Calendar.WEDNESDAY:
+                dayC = 'W';
+                curDayTextView.setText("Wednesday");
+                break;
+            case Calendar.THURSDAY:
+                dayC = 'R';
+                curDayTextView.setText("Thursday");
+                break;
+            case Calendar.FRIDAY:
+                dayC = 'F';
+                curDayTextView.setText("Friday");
+                break;
+            default:
+                dayC = 'M';
+                curDayTextView.setText("Monday");
+                break;
+        }
         //goes through the meetingTimes list to create a button for each class
         for(int i = 0; i < meetingTimes.size(); i++){
             //Only Add classes that occur "today", adding duplicate classes causes crash
-            //TODO: Enusre only current day is loaded into schedule: replace 'M' below with current day char
-            if(meetingTimes.get(i).day == 'M') {
+            if(meetingTimes.get(i).day == dayC) {
                 //button representing the current class in the list
                 Button cbtn = new Button(this);
                 //id = the index of the class in the list
@@ -236,24 +268,7 @@ public class PortraitSchedule extends AppCompatActivity {
                 RelativeLayout.LayoutParams layParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, heightOfBtn);
                 layParams.setMargins(0,startMargin,1,0);
                 cbtn.setLayoutParams(layParams);
-                char currentDay = meetingTimes.get(i).day;
-                switch (currentDay) {
-                    case 'M':
-                        currentLayout = (RelativeLayout) findViewById(R.id.mondayRelativeLayout);
-                        break;
-                    case 'T':
-                        currentLayout = (RelativeLayout) findViewById(R.id.tuesdayRelativeLayout);
-                        break;
-                    case 'W':
-                        currentLayout = (RelativeLayout) findViewById(R.id.wednesdayRelativeLayout);
-                        break;
-                    case 'R':
-                        currentLayout = (RelativeLayout) findViewById(R.id.thursdayRelativeLayout);
-                        break;
-                    case 'F':
-                        currentLayout = (RelativeLayout) findViewById(R.id.fridayRelativeLayout);
-                        break;
-                }
+                currentLayout = (RelativeLayout) findViewById(R.id.singleDayRelativeLayout);
                 final int currentCount = i;
                 cbtn.setOnClickListener(new View.OnClickListener() {
                     @Override
