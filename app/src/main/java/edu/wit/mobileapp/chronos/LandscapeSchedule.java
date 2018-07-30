@@ -24,6 +24,12 @@ import java.util.Map;
 
 public class LandscapeSchedule extends AppCompatActivity {
 
+    //fields to be used by the details fragment
+    String clickedClassName;
+    String clickedClassNumber;
+    String clickedClassInstructor;
+    int clickedClass;
+    //
     Map<String,Course> courses;
     List<Lecture> meetingTimes;
     private static final String PREFS_NAME = "edu.wit.mobileapp.chronos.PortraitSchedule";
@@ -106,7 +112,6 @@ public class LandscapeSchedule extends AppCompatActivity {
             Button cbtn = new Button(this);
             //id = the index of the class in the list
             cbtn.setId(i);
-            cbtn.setTag(meetingTimes.get(i));
             cbtn.setText(courses.get(meetingTimes.get(i).courseNumber).courseName);
             cbtn.setBackgroundColor(getResources().getColor(R.color.ivory));
             //original times are in the format of 1-2 numbers for hour, then a colon, then 2 numbers for minutes, a space, then am/pm
@@ -158,10 +163,15 @@ public class LandscapeSchedule extends AppCompatActivity {
                     currentLayout = (RelativeLayout)findViewById(R.id.fridayRelativeLayout);
                     break;
             }
-            currentLayout.addView(cbtn);
+            final int currentCount = i;
             cbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v){
+                    //setting fields to be used by the fragment
+                    clickedClassName = courses.get(meetingTimes.get(currentCount).courseNumber).courseName;
+                    clickedClassNumber = courses.get(meetingTimes.get(currentCount).courseNumber).courseNumber;
+                    clickedClassInstructor = courses.get(meetingTimes.get(currentCount).courseNumber).instructor;
+                    //opening the fragment
                     FragmentManager fm = getSupportFragmentManager();
                     FragmentTransaction transaction = fm.beginTransaction();
                     Fragment fragment1 = new CourseDetails();
@@ -169,6 +179,7 @@ public class LandscapeSchedule extends AppCompatActivity {
                     transaction.commit();
                 }
             });
+            currentLayout.addView(cbtn);
         }
     }
 }
