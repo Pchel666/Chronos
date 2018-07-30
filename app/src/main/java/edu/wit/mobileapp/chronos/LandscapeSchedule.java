@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -160,19 +163,13 @@ public class LandscapeSchedule extends AppCompatActivity {
             cbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v){
-                    //TODO: make onClick listener
-                    Lecture thisTime = (Lecture) v.getTag();
-                    String key = thisTime.courseNumber;
-                    String courseName = courses.get(key).courseName;
-                    String place = thisTime.place;
-                    String instructor = courses.get(key).instructor;
-
-                    String breakpoint = ("Break to check data");
-
+                    FragmentManager fm = getSupportFragmentManager();
+                    FragmentTransaction transaction = fm.beginTransaction();
+                    Fragment fragment1 = new CourseDetails();
+                    transaction.replace(R.id.container, fragment1);
+                    transaction.commit();
                 }
             });
         }
-        // break point to check data
-        System.out.print("break");
     }
 }
