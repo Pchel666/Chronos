@@ -59,4 +59,7 @@
     <string name="professor_fragment">This is the Professor</string>
     <string name="location_fragment">This is the Location</string>
     <string name="close_fragment">X</string>
+    <string name="custom_name_fragment">Custom Name: </string>
+    <string name="custom_save_fragment">Save</string>
+    <string name="course_times_fragment">These are the course times</string>
 </resources>

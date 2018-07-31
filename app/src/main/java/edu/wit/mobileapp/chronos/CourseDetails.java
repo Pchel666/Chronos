@@ -22,15 +22,17 @@ public class CourseDetails extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        courseNumber = getArguments().getString("courseNumber");
-        courseName = getArguments().getString("courseName");
-        place = getArguments().getString("place");
-        instructor = getArguments().getString("instructor");
+
     }
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_course_details, container, false);
+
+        courseNumber = getArguments().getString("courseNumber");
+        courseName = getArguments().getString("courseName");
+        place = getArguments().getString("place");
+        instructor = getArguments().getString("instructor");
 
         TextView nameTV = v.findViewById(R.id.nameTV);
         TextView numberTV = v.findViewById(R.id.numberTV);
@@ -40,7 +42,7 @@ public class CourseDetails extends Fragment {
         closeBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: close the fragment when this button is clicked.
+                getActivity().onBackPressed();
             }
         });
 

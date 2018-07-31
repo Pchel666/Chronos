@@ -375,5 +375,7 @@
     <FrameLayout
         android:id="@+id/detailsContainerLandscape"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"/>
+        android:layout_width="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="280dp"/>
 </RelativeLayout>
