@@ -10,11 +10,12 @@
 
     <ImageButton
         android:id="@+id/close"
-        android:layout_width="40dp"
-        android:layout_height="30dp"
-        android:layout_gravity="end"
-        android:background="@color/white"
-        android:src="@android:drawable/ic_menu_close_clear_cancel"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        android:tint="@color/white"
+        android:background="@drawable/button_border"
+        android:layout_gravity="end"/>
 
     <TextView
         android:id="@+id/nameTV"

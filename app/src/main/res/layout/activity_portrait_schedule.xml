@@ -6,12 +6,7 @@
     android:orientation="vertical"
     android:padding="0dp">
 
-    <ImageButton
-        android:id="@+id/resetBTN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_menu_revert"
-        android:background="@drawable/course_details_border"/>
+
 
     <LinearLayout
         android:id="@+id/SingleDayLayout"
@@ -264,5 +259,13 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_centerInParent="true"/>
+
+    <ImageButton
+        android:id="@+id/resetBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_revert"
+        android:tint="@color/white"
+        android:background="@drawable/button_border"/>
 
 </RelativeLayout>
