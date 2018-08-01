@@ -8,15 +8,13 @@
     android:padding="10dp"
     tools:context=".CourseDetails">
 
-    <Button
+    <ImageButton
         android:id="@+id/close"
         android:layout_width="40dp"
         android:layout_height="30dp"
         android:layout_gravity="end"
         android:background="@color/white"
-        android:text="@string/close_fragment"
-        android:textColor="@color/red"
-        android:textSize="15dp"/>
+        android:src="@android:drawable/ic_menu_close_clear_cancel"/>
 
     <TextView
         android:id="@+id/nameTV"

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 
@@ -38,7 +39,7 @@ public class CourseDetails extends Fragment {
         TextView numberTV = v.findViewById(R.id.numberTV);
         TextView placeTV = v.findViewById(R.id.placeTV);
         TextView instructorTV = v.findViewById(R.id.instructorTV);
-        Button closeBTN = v.findViewById(R.id.close);
+        ImageButton closeBTN = v.findViewById(R.id.close);
         closeBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -54,7 +55,7 @@ public class PortraitSchedule extends AppCompatActivity {
         setContentView(R.layout.activity_portrait_schedule);
 
         //TODO: This button is fully functinoal, just need to make it look good in UI
-        Button resetBTN = findViewById(R.id.resetBTN);
+        ImageButton resetBTN = findViewById(R.id.resetBTN);
         resetBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
