@@ -238,18 +238,17 @@
                     android:text="@string/pm9"
                     android:textSize="15sp" />
 
-             </RelativeLayout>
+            </RelativeLayout>
 
                 <RelativeLayout
                     android:id="@+id/singleDayRelativeLayout"
-                    android:layout_width="210dp"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2" >
+                    android:layout_weight="2">
 
                     <include layout="@layout/calendar_cells" />
 
                 </RelativeLayout>
-
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>

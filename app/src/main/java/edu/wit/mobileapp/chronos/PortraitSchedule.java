@@ -32,6 +32,7 @@ public class PortraitSchedule extends AppCompatActivity {
     String clickedClassNumber;
     String clickedClassInstructor;
     String clickedClassLocation;
+    int clickedClassOffset;
     //
     Map<String,Course> courses;
     List<Lecture> meetingTimes;
@@ -271,6 +272,7 @@ public class PortraitSchedule extends AppCompatActivity {
                 cbtn.setLayoutParams(layParams);
                 currentLayout = (RelativeLayout) findViewById(R.id.singleDayRelativeLayout);
                 final int currentCount = i;
+                clickedClassOffset = startMargin;
                 cbtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v){
@@ -285,6 +287,7 @@ public class PortraitSchedule extends AppCompatActivity {
                         bundle.putString("courseNumber", clickedClassNumber);
                         bundle.putString("instructor", clickedClassInstructor);
                         bundle.putString("place", clickedClassLocation);
+                        bundle.putInt("offset", clickedClassOffset);
                         //opening the fragment
                         FragmentManager fm = getSupportFragmentManager();
                         FragmentTransaction transaction = fm.beginTransaction();
