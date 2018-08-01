@@ -176,10 +176,6 @@ public class PortraitSchedule extends AppCompatActivity {
         editor.commit();
         Intent goToLogin = new Intent();
         goToLogin.setClass(PortraitSchedule.this, WebDummy.class);
-
-        //inform app that the next time we arrive at Portrait Schedule, we will be coming from the login activity
-        editor.putBoolean("fromLogin",true);
-        editor.commit();
         startActivity(goToLogin);
     }
 

@@ -1,7 +1,9 @@
 package edu.wit.mobileapp.chronos;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,12 +31,19 @@ public class WebDummy extends AppCompatActivity {
     int page = 0;
 
     WebView webview;
-    ImageView loading;
     TextView loadingTV;
 
     Map<String, Course> courses;
     List<Lecture> lectures;
     List<String> links;
+
+    private static final String PREFS_NAME = "edu.wit.mobileapp.chronos.PortraitSchedule";
+    /** This application's preferences */
+    private static SharedPreferences saved;
+
+
+    /** This application's settings editor*/
+    private static SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +76,13 @@ public class WebDummy extends AppCompatActivity {
         // Ensures user has to enter credentials when arriving at this activity
         CookieManager.getInstance().removeAllCookies(null);
         CookieManager.getInstance().flush();
+
+        if(saved == null){
+            saved = this.getApplicationContext().getSharedPreferences(PREFS_NAME,
+                    Context.MODE_PRIVATE );
+        }
+        editor = saved.edit();
+
 
         //Load leopardweb
         webview.loadUrl("https://cas.wit.edu/");
@@ -172,6 +188,8 @@ public class WebDummy extends AppCompatActivity {
 
 
                 //Send the data to the schedule activity
+                editor.putBoolean("fromLogin", true);
+                editor.commit();
                 startActivity(dataToSchedule);
             } else { // When there are still links yet to be clicked
 
