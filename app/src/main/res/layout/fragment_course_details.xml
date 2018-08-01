@@ -2,44 +2,51 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/detailsLayout"
-    android:layout_width="wrap_content"
+    android:layout_width="250dp"
     android:layout_height="wrap_content"
-    android:background="@color/gray"
+    android:background="@drawable/course_details_border"
+    android:padding="10dp"
     tools:context=".CourseDetails">
 
     <Button
         android:id="@+id/close"
         android:layout_width="49dp"
         android:layout_height="36dp"
-        android:layout_gravity="right"
-        android:text="@string/close_fragment" />
+        android:layout_gravity="end"
+        android:background="@color/white"
+        android:text="@string/close_fragment"
+        android:textColor="@color/red"/>
 
     <TextView
         android:id="@+id/nameTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="@string/course_name_fragment" />
+        android:text="@string/course_name_fragment"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/numberTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="@string/course_number_fragment" />
+        android:text="@string/course_number_fragment"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/instructorTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:text="@string/professor_fragment" />
+        android:text="@string/professor_fragment"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/placeTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
-        android:text="@string/location_fragment" />
+        android:text="@string/location_fragment"
+        android:textColor="@color/black"/>
 
 </FrameLayout>
