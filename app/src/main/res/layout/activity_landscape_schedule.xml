@@ -372,7 +372,7 @@
         </RelativeLayout>
     </ScrollView>
 
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/detailsContainerLandscape"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
