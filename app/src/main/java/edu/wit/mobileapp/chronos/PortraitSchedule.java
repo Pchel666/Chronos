@@ -32,7 +32,9 @@ public class PortraitSchedule extends AppCompatActivity {
     String clickedClassNumber;
     String clickedClassInstructor;
     String clickedClassLocation;
+    String clickedClassTime;
     int clickedClassOffset;
+
     //
     Map<String,Course> courses;
     List<Lecture> meetingTimes;
@@ -277,12 +279,14 @@ public class PortraitSchedule extends AppCompatActivity {
                         clickedClassNumber = courses.get(meetingTimes.get(currentCount).courseNumber).courseNumber;
                         clickedClassInstructor = courses.get(meetingTimes.get(currentCount).courseNumber).instructor;
                         clickedClassLocation = meetingTimes.get(currentCount).place;
+                        clickedClassTime = String.format("%s - %s", meetingTimes.get(currentCount).startTime, meetingTimes.get(currentCount).endTime);
 
                         Bundle bundle = new Bundle();
                         bundle.putString("courseName", clickedClassName);
                         bundle.putString("courseNumber", clickedClassNumber);
                         bundle.putString("instructor", clickedClassInstructor);
                         bundle.putString("place", clickedClassLocation);
+                        bundle.putString("time", clickedClassTime);
                         bundle.putInt("offset", clickedClassOffset);
                         //opening the fragment
                         FragmentManager fm = getSupportFragmentManager();
