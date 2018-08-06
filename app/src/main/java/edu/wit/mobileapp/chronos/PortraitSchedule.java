@@ -161,7 +161,7 @@ public class PortraitSchedule extends AppCompatActivity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        
+
         // If the orientation has just changed to landscape, send the user to the Landscape schedule activity
         if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE){
             Intent turnLandscape = new Intent();
