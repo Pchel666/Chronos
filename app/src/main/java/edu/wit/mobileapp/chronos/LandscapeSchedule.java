@@ -84,10 +84,8 @@ public class LandscapeSchedule extends AppCompatActivity {
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
 
-        int orientation=newConfig.orientation;
-
         //If the orientation has just been changed to portrait, send the user to the portrait schedule activity
-        if(orientation == 1) {
+        if(newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
             Intent turnPortrait = new Intent();
             turnPortrait.setClass(LandscapeSchedule.this, PortraitSchedule.class);
             startActivity(turnPortrait);
